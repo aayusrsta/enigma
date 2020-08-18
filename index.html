@@ -112,9 +112,10 @@
         <li class="w3-padding">Tic Tac Toe<span class="w3-tag w3-green w3-margin-left">Available</span></li>
         <li class="w3-padding">Classic Snake <span class="w3-tag w3-red w3-margin-left">Coming Soon</span></li>
       </ul>
-
-      <div class="w3-row-padding w3-padding-32 w3-center" style="margin:0 -16px">
-        <div class="w3-third w3-margin-bottom">
+<br>
+<br>
+      <div class="slideshow-container">
+        <div class="mySlidess fade">
           <img src="1.jpg" alt="hangman" style="width:100%" class="w3-hover-opacity">
           <div class="w3-container w3-white">
             <p><b>Hangman</b></p>
@@ -123,7 +124,7 @@
             <a href="./Projects/Hangman/game.html" target="_blank"><button class="w3-button w3-black w3-margin-bottom" >Play</button></a>
           </div>
         </div>
-        <div class="w3-third w3-margin-bottom">
+        <div class="mySlidess fade">
           <img src="2.jpg" alt="MERCH2" style="width:100%" class="w3-hover-opacity">
           <div class="w3-container w3-white">
             <p><b>Tic Tac Toe</b></p>
@@ -132,7 +133,7 @@
             <a href="./Projects/TicTacToe/ttt.html" target="_blank"><button class="w3-button w3-black w3-margin-bottom">Play</button></a>
           </div>
         </div>
-        <div class="w3-third w3-margin-bottom">
+        <div class="mySlidess fade">
           <img src="3.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
           <div class="w3-container w3-white">
             <p><b>Classic Snake</b></p>
@@ -141,6 +142,13 @@
             <button class="w3-button w3-black w3-margin-bottom" >Coming Soon</button>
           </div>
         </div>
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
       </div>
     </div>
   </div>
@@ -193,5 +201,6 @@
   <p class="w3-medium">© Aayu Shrestha 1999. All rights reserved.</p>
 </footer>
 <script src='./js.js'></script>
+
 </body>
 </html>
