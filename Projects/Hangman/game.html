@@ -5,7 +5,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+<style>
+  #keyboard{background-color: black;}
+</style>
   <!-- Bootstrap 4 CDN -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 
@@ -13,7 +15,9 @@
 </head>
 <body>
 <div class="container">
-  <h1 class="text-center wide">HANGMAN</h1>
+  <header class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+    <h1 class="w3-xlarge">HANGMAN<p class="w3-medium">by Aayu Shrestha.</p></h1>
+  </header>
   <div class="float-left padding-large border wide text-black"><h5>Total Wrong Guesses:</h5> <span id='mistakes'>0</span> out of <span id='maxWrong'></span></div>
   <div class="text-center">
     <img id='hangmanPic' src="./images/0.jpg" alt="">
