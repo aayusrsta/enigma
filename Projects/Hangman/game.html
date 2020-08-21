@@ -6,11 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 <style>
-  #keyboard{background-color: gray;}
-  .btn {
-  background-color: red; 
- }
-
+  #keyboard{background-color: rgb(10, 62, 81);}
+ 
+.containe{background-color: black;}
 
 
 </style>
@@ -20,18 +18,20 @@
   <title>Hangman by Aayu</title>
 </head>
 <body>
-<div class="container">
+<div class="containe">
   <header class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
     <h1 class="w3-xlarge">HANGMAN<p class="w3-medium">by Aayu Shrestha.</p></h1>
   </header>
-  <div class="float-left padding-large border wide text-black"><h5>Total Wrong Guesses:</h5> <span id='mistakes'>0</span> out of <span id='maxWrong'></span></div>
+  <div class="wide text-white"><h5>Total Wrong Guesses:</h5></div>
+  
+  <div class="float-left padding-large border wide text-white w3-red"> <span id='mistakes'>0</span> out of <span id='maxWrong'></span></div>
   <div class="text-center">
     <img id='hangmanPic' src="./images/0.jpg" alt="">
-    <p><b><u>Guess the Cities of the World:</u></b></p>
-    <p id="wordSpotlight">The word to be guessed goes here</p>
-    <div id="keyboard"></div>
+    <div class=" text-white"><p><b><u>Guess the Cities of the World:</u></b></p>
+    <p id="wordSpotlight">The word to be guessed goes here</p></div>
+    <div class="container" id="keyboard"></div>
     <br>
-    <button class="w3-btn w3-teal w3-margin-bottom w3-round-xlarge" onClick="reset()">Reset</button>
+    <button class="w3-btn w3-red w3-margin-bottom w3-round-xlarge" onClick="reset()">Reset</button>
   </div> 
 </div>
 <footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge"><p class="w3-medium">© Aayu Shrestha 1999. All rights reserved.</p></footer>

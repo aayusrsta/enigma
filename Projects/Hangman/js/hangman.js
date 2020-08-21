@@ -29,7 +29,7 @@ function generateButtons() {
   let buttonsHTML = 'abcdefghijklmnopqrstuvwxyz'.split('').map(letter =>
     `
       <button
-        class="w3-button w3-black w3-round-xlarge m-2"
+        class="w3-button w3-teal w3-round-xlarge m-2"
         id='` + letter + `'
         onClick="handleGuess('` + letter + `')"
       >
