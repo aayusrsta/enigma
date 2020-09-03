@@ -2,6 +2,8 @@ body {font-family: "Lato", sans-serif}
 .mySlides {display: none}
 #fb:hover{background-color:#3b5998;}
 #ig:hover{background-color:#f73466;}
+#close:hover{background-color:red;}
+#p{font-family: "Amatic SC", sans-serif}
 .column{
   float: left;
   width: 33%;
