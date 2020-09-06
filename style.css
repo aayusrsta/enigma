@@ -150,6 +150,15 @@ img {vertical-align: middle;}
   }
 
 
+
+  #mySidebar {
+    margin: 0;
+    padding: 0;
+   
+    height: 100%;
+    overflow: auto;
+  }
+  
   /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media only screen and (max-width: 700px) {
   #mySidebar {
