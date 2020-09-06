@@ -228,4 +228,7 @@ img {vertical-align: middle;}
         height: 100%;
         float: left;
       } 
+      #slider-k:hover div {width: 90px;cursor: w-resize;}
+      #slider-k:hover div:hover {
+      width: 250px;}
   }
