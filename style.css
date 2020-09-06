@@ -226,7 +226,7 @@ img {vertical-align: middle;}
         box-sizing: border-box;
         width: 30%;
         height: 100%;
-        float: left;
+        float: center;
       } 
       #slider-k:hover div {width: 90px;cursor: w-resize;}
       #slider-k:hover div:hover {
