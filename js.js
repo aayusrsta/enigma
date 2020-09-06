@@ -64,7 +64,7 @@ function showSlides(n) {
 /*sidebar*/
 function w3_open() {
 
-  document.getElementById("mySidebar").style.width = "55px";
+  document.getElementById("mySidebar").style.width = "58px";
   document.getElementById("mySidebar").style.display = "block";
   document.getElementById("openNav").style.display = 'none';
 }
