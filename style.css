@@ -148,3 +148,23 @@ img {vertical-align: middle;}
   .table-wrapper-scroll-y {
   display: block;
   }
+
+
+  /* On screens that are less than 700px wide, make the sidebar into a topbar */
+@media only screen and (max-width: 700px) {
+  #mySidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+  .sidebar a {float: left;}
+  div.content {margin-left: 0;}
+}
+
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
+@media only screen and (max-width: 400px) {
+  #mySidebar a {
+    text-align: center;
+    float: none;
+  }
+}
