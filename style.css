@@ -216,20 +216,10 @@ img {vertical-align: middle;}
   #slider-k > div:first-child {margin-left: -63px;}
   #slider-k > div:last-child {margin-right: -63px;}
 
-    /* On screens that are less than 700px wide, make the sidebar into a topbar */
-@media only screen and (max-width: 700px) {
-  #slider-k .frame-k  {
-    width: 100%;
-    height: auto;
-    position: relative;
+  @media only screen and (max-width: 1000px) {
+    #slider-k .frame-k{
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
   }
-  
-}
-
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
-@media only screen and (max-width: 400px) {
-  #slider-k .frame-k  {
-    text-align: center;
-    float: none;
-  }
-}
