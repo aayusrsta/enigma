@@ -219,7 +219,7 @@ img {vertical-align: middle;}
   @media only screen and (max-width: 1000px) {
     #slider-k {
       width: 100%;
-      display: block;
+      height: 300px;
       }
       .frame-k {
         -moz-box-sizing: border-box;
