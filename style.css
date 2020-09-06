@@ -220,6 +220,12 @@ img {vertical-align: middle;}
     #slider-k {
       width: 100%;
       display: block;
-      
-    }
+      }
+      .frame-k {
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        width: 30%;
+        height: 100%;
+        float: left;
+      } 
   }
