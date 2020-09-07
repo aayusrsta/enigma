@@ -9,6 +9,46 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="style.css">
 <link rel="shortcut icon" type="imagee/png" href="favicon.png">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+  .swiper-container {
+  width: 100%;
+  padding-top: 130px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+    position:relative;
+}
+.slide-text{
+  position:absolute;
+  left:25%;
+  top:80%;
+}
+.slide-text h2{
+  color:#fff;
+  font-size: 30px;
+  margin: 0 0 15px;
+}
+.swiper-pagination-bullet{
+  width:10px;
+  height: 10px;
+  background:grey;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+ 
+  background:white;
+  opacity: 1;
+}
+</style>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <body>
 
 <!-- Navbar -->
@@ -85,29 +125,40 @@
     <h2 class="w3-wide" id="p"><b>My Work Showcase</b></h2>
     <p class="w3-opacity"><i>As a Web Designer/Developer</i></p>
     <p class="card-2">This is the beginning of my journey in this field. My dedication to the work and motivation is yet to grow, which would lead me to exceptional projects and experiences. This is the profession I'm passionate about, and I would be proud to share examples of my greatest work soon. Take a moment to check out my portfolio, and get in touch with any questions.</p>
-    <br>
     <hr>
-    <h2 class="w3-wide" id="p"><b>My Hobbies</b></h2>
-    <div class="row">
-      <div class=" column">
-        <div class="card-2">
-        <p>Food</p>
-        <img src="h1.jpg" class="w3-round w3-margin-bottom w3-hover-opacity" alt="Random Name" style="width:60%">
+  </div>
+  <div class="w3-center " style="max-width:auto" id="abtme1">
+    <br>
+  
+  
+    <h2 class="w3-wide w3-text-white" id="p"><b>My Hobbies</b></h2>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+       
+        <div class="swiper-slide" style="background-image:url(h1.jpg)">
+          <div class="slide-text">
+            <h2>Food</h2>
+          </div>
+        </div>
+        
+      
+        <div class="swiper-slide" style="background-image:url(h2.jpg)">
+          <div class="slide-text">
+            <h2>Guitar</h2>
+          </div>
+        </div>
+       
+        <div class="swiper-slide" style="background-image:url(h3.jpg)">
+          <div class="slide-text">
+            <h2>Work Out</h2>
+          </div>
+        </div>
+       
       </div>
-      </div>
-      <div class="column">
-        <div class="card-2">
-        <p>Guitar</p>
-        <img src="h2.jpg" class="w3-round w3-margin-bottom w3-hover-opacity" alt="Random Name" style="width:60%">
-      </div>
-      </div>
-      <div class="column">
-        <div class="card-2">
-        <p>Work Out</p>
-        <img src="h3.jpg" class="w3-round w3-margin-bottom w3-hover-opacity " alt="Random Name" style="width:60%">
-      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
     </div>
-    </div>
+  
   </div>
 
   <!-- The Tour Section -->
@@ -216,6 +267,28 @@
   <p class="w3-medium">© Aayu Shrestha 1999. All rights reserved.</p>
 </footer>
 <script src='./js.js'></script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    autoplay:{
+      delay:2500,
+      disableOnInteraction:false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+</script>
 
 </body>
 </html>
