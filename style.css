@@ -4,6 +4,10 @@ body {font-family: "Lato", sans-serif}
 #ig:hover{background-color:#f73466;}
 #close:hover{background-color:red;}
 #p{font-family: "Amatic SC", sans-serif}
+
+
+
+
 .column{
   float: left;
   width: 33%;
@@ -33,7 +37,7 @@ body {font-family: "Lato", sans-serif}
 
 /* Style the counter cards */
 .card-2 {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9);
+  box-shadow: 0 4px 8px 0 rgba(123, 119, 119, 0.9);
   padding: 16px;
   text-align: center;
   background-color: #f1f1f1;}
@@ -180,11 +184,21 @@ img {vertical-align: middle;}
 
 
 
-#abtme1 {
+#abtme{
   background: black;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
   font-size: 14px;
   color: #000;
+  margin: 0;
+  padding: 0;
+}
+
+
+#contact {
+  background: #000;
+  
+  
+  color: #fff;
   margin: 0;
   padding: 0;
 }
