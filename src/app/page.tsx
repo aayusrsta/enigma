@@ -3,6 +3,7 @@ import Cursor from '@/components/Cursor/Cursor'
 import Nav from '@/components/Nav/Nav'
 import Hero from '@/components/Hero/Hero'
 import Marquee from '@/components/Marquee/Marquee'
+import Projects from '@/components/Projects/Projects'
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
+        <Projects />
       </main>
     </>
   )
