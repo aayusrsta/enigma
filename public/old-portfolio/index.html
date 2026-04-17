@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<title>Aayu Shrestha 1999</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amatic+SC">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="style.css">
+<link rel="shortcut icon" type="imagee/png" href="favicon.png">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<style>
+  .swiper-container {
+  width: 100%;
+  padding-top: 130px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+    position:relative;
+}
+.slide-text{
+  position:absolute;
+  left:40%;
+  top:85%;
+}
+.slide-text h2{
+  color:#fff;
+  font-family: "Amatic SC";
+  font-size: 30px;
+  margin: 0 0 15px;
+}
+.swiper-pagination-bullet{
+  width:10px;
+  height: 10px;
+  background:grey;
+  opacity: 1;
+}
+.swiper-pagination-bullet-active{
+ 
+  background:white;
+  opacity: 1;
+}
+</style>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+    
+  <div class="w3-bar w3-black w3-card  ">
+    
+    
+   
+   
+    <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
+    
+    <a href="#contact" class="w3-bar-item w3-button w3-padding-large w3-hide-small  w3-right" id="p"><b>Contact</b></a>
+    <a href="#projects" class="w3-bar-item w3-button w3-padding-large w3-hide-small  w3-right" id="p"><b>My Projects</b></a>
+    <a href="#abtme" class="w3-bar-item w3-button w3-padding-large w3-hide-small  w3-right"  id="p"><b>About Me</b></a>
+    <a href="#" class="w3-bar-item w3-button w3-padding-large  w3-right"><i class="fa fa-home"></i></a>
+    
+    <div class="w3-sidebar w3-black w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+      <button class="w3-bar-item w3-center w3-button w3-large"
+      onclick="w3_close()">&times;</button>
+   <a href="https://www.facebook.com/aayu.shrestha.33" target="_blank" class="w3-padding-large w3-hover  w3-left" id="fb"><i class="fa fa-facebook-official"></i></a>
+    <a href="https://www.instagram.com/aayu.srsta__" target="_blank" class="w3-padding-large w3-hover w3-left" id="ig"><i class="fa fa-instagram"></i></a>
+    <a href="https://www.twitter.com/AaYuSrsTa1" target="_blank" class="w3-padding-large w3-hover-blue  w3-left"><i class="fa fa-twitter"></i></a>
+    <a href="./sc.html" target="_blank" class="w3-padding-large w3-hover-yellow  w3-left"><i class="fa fa-snapchat w3-hover-opacity"></i></a>
+      
+    </div> 
+    <div class="w3-black">
+      <button id="openNav" class="w3-button w3-padding-large w3-bar-item  w3-black  w3-hover-black" onclick="w3_open()"><img src="logo.png" class="w3-hover-opacity w3-left" style="width:45%"></button>
+    </div>
+  </div>
+</div>
+
+<!-- Navbar on small screens (remove the onclick attribute if you want the navbar to always show on top of the content when clicking on the links) -->
+<div id="navDemo" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:46px">
+  <a href="#abtme" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" id="p">About Me</a>
+  <a href="#projects" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" id="p">My Projects</a>
+  <a href="#contact" class="w3-bar-item w3-button w3-padding-large" onclick="myFunction()" id="p">Contact</a>
+  
+</div>
+
+<!-- Page content -->
+<div class="w3-content" style="max-width:2000px;margin-top:46px">
+
+  <!-- Automatic Slideshow Images -->
+  <div class="mySlides w3-display-container w3-center">
+    <img src="me1.jpeg" style="width:100%">
+    <div class="w3-display-left w3-padding-large w3-border w3-wide w3-text-light-grey w3-right w3-black w3-opacity-min">
+      <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge"  id="p"><b>HI, I'M AAYU</b></h1>
+      <h4 class="w3-hide-large" style="white-space:nowrap "  id="p"><b>HI, I'M AAYU</b></h5>
+      <h3  class="w3-hide-medium w3-hide-small"  id="p"><b>WEB DESIGNER/DEVELOPER</b></h3>
+    </span>
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="me2.jpg" style="width:100%">
+    <div class="w3-display-left w3-padding-large w3-border w3-wide w3-text-light-grey w3-right w3-black w3-opacity-min">
+      <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge"id="p"><b>HI, I'M AAYU</b></h1>
+      <h5 class="w3-hide-large" style="white-space:nowrap " id="p"><b>HI, I'M AAYU</b></h5>
+      <h3  class="w3-hide-medium w3-hide-small" id="p"><b>WEB DESIGNER/DEVELOPER</b></h3>
+    </div>
+  </div>
+  <div class="mySlides w3-display-container w3-center">
+    <img src="me.jpeg" style="width:100%">
+    <div class="w3-display-left w3-padding-large w3-border w3-wide w3-text-light-grey w3-right w3-black w3-opacity-min">
+      <h1 class="w3-hide-medium w3-hide-small w3-xxxlarge"  id="p"><b>HI, I'M AAYU</b></h1>
+      <h5 class="w3-hide-large" style="white-space:nowrap"  id="p"><b>HI, I'M AAYU</b></h5>
+      <h3  class="w3-hide-medium w3-hide-small"  id="p"><b>WEB DESIGNER/DEVELOPER</b></h3>
+    </div>
+  </div>
+  
+
+  <!-- The Band Section -->
+  <div class="w3-center" style="max-width:auto" id="abtme">
+    <br>
+    <br>
+    <h2 class="w3-wide" id="p"><b>My Work Showcase</b></h2>
+    <p class="w3-opacity "><i>As a Web Designer/Developer</i></p>
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px">
+    <p class="card-2">This is the beginning of my journey in this field. My dedication to the work and motivation is yet to grow, which would lead me to exceptional projects and experiences. This is the profession I'm passionate about, and I would be proud to share examples of my greatest work soon. Take a moment to check out my portfolio, and get in touch with any questions.</p>
+      </div>
+      
+    </div>
+
+  <div class=" w3-center  w3-padding64"  id="abtme1">
+    
+    <br>
+  
+  
+    <h2 class="w3-wide w3-text-white " id="p"><b>My Hobbies</b></h2>
+    <div class="swiper-container">
+      <div class="swiper-wrapper">
+       
+        <div class="swiper-slide" style="background-image:url(h1.jpg)">
+          <div class="slide-text">
+            <h2>Food</h2>
+          </div>
+        </div>
+        
+      
+        <div class="swiper-slide" style="background-image:url(h2.jpg)">
+          <div class="slide-text">
+            <h2>Guitar</h2>
+          </div>
+        </div>
+       
+        <div class="swiper-slide" style="background-image:url(h3.jpg)">
+          <div class="slide-text">
+            <h2>Work Out</h2>
+          </div>
+        </div>
+       
+      </div>
+      <!-- Add Pagination -->
+      <div class="swiper-pagination"></div>
+    </div>
+    <div class="w3-container w3-content w3-center w3-padding-64" style="max-width:800px"><hr></div>
+  </div>
+
+  <!-- The Tour Section -->
+  <div class="w3-black" id="projects" style="height: 800px;">
+    <div class="w3-container w3-content w3-padding64" style="max-width:800px">
+      <h2 class="w3-wide w3-center" id="p"><b>My PROJECTS</b></h2>
+      <p class="w3-opacity w3-center"><i>These are some of the JS projects I've completed so far.</i></p><br>
+      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+      <ul class="w3-ul w3-border w3-white w3-text-grey">
+        <li class="w3-padding w3-hover-blue" onclick="currentSlide(1) " >Hangman <span class="w3-tag w3-green w3-margin-right w3-right">Available</span></li>
+        <li class="w3-padding w3-hover-blue" onclick="currentSlide(2)">Tic Tac Toe<span class="w3-tag w3-green w3-margin-right  w3-right">Available</span></li>
+        <li class="w3-padding w3-hover-blue" onclick="currentSlide(3)">Classic Snake <span class="w3-tag w3-red w3-margin-right  w3-right">Coming Soon</span></li>
+        <li class="w3-padding w3-hover-blue" onclick="currentSlide(4)">Maze <span class="w3-tag w3-red w3-margin-right  w3-right">Coming Soon</span></li>
+        <li class="w3-padding w3-hover-blue">Dice rolling simulator <span class="w3-tag w3-red w3-margin-right  w3-right">Coming Soon</span></li>
+        <li class="w3-padding w3-hover-blue">Calculator <span class="w3-tag w3-red w3-margin-right  w3-right">Coming Soon</span></li>
+        <li class="w3-padding w3-hover-blue">To Do List <span class="w3-tag w3-red w3-margin-right  w3-right">Coming Soon</span></li>
+        
+      </ul>
+      </div>
+<br>
+<br> 
+      <div class="slideshow-container">
+        <div class="mySlidess fade" >
+          <img src="1.jpg" alt="hangman" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+           <div class="w3-center"> <p><b>Hangman</b></p></div>
+            <p class="w3-opacity">Enigma Games</p>
+            <p>Play the classic hangman and guess the hidden words.</p>
+            <a href="./Projects/Hangman/game.html" target="_blank"><button class="w3-button w3-black w3-margin-bottom" >Play</button></a>
+          </div>
+        </div>
+        <div class="mySlidess fade"  >
+          <img src="2.jpg" alt="tictactoe" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+           <div class="w3-center"> <p><b>Tic Tac Toe</b></p></div>
+            <p class="w3-opacity">Enigma Games.</p>
+            <p>Classic TicTacToe. Big Noughts and Crosses.</p>
+            <a href="./Projects/TicTacToe/ttt.html" target="_blank"><button class="w3-button w3-black w3-margin-bottom">Play</button></a>
+          </div>
+        </div>
+        <div class="mySlidess fade" >
+          <img src="3.jpg" alt="San Francisco" style="width:100%" class="w3-hover-opacity">
+          <div class="w3-container w3-white">
+            <div class="w3-center"><p><b>Classic Snake</b></p></div>
+            <p class="w3-opacity">Enigma Games</p>
+            <p>Play Snake like it is 90s again.</p>
+            <button class="w3-button w3-black w3-margin-bottom" >Coming Soon</button>
+          </div>
+        </div>
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+<a class="next" onclick="plusSlides(1)">&#10095;</a>
+<div style="text-align:center">
+  <span class="dot" onclick="currentSlide(1)"></span> 
+  <span class="dot" onclick="currentSlide(2)"></span> 
+  <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+
+      </div>
+         </div>
+        
+    </div>
+  
+ 
+  
+
+
+  <!-- The Contact Section -->
+  
+  <div class="w3-container w3-content w3-padding-64" style="max-width:800px" style="max-width:auto" id="contact">
+    <br>
+    <br>
+    <h2 class="w3-wide w3-center" id="p"><b>CONTACT</b></h2>
+    <p class="w3-opacity w3-center"><i>Drop a note!</i></p>
+    
+    <div class="w3-row w3-padding-32">
+      <div class="w3-col m6 w3-large w3-margin-bottom">
+        <i class="fa fa-map-marker" style="width:30px"></i> Kathmandu, NP<br>
+        <i class="fa fa-phone" style="width:30px"></i> Phone: +977 984######5<br>
+        <i class="fa fa-envelope" style="width:30px"> </i> Email: aayu.srsta@gmail.com<br>
+      </div>
+      <div class="w3-col m6">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px 8px -16px">
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Name" required name="Name">
+            </div>
+            <div class="w3-half">
+              <input class="w3-input w3-border" type="text" placeholder="Email" required name="Email">
+            </div>
+          </div>
+          <input class="w3-input w3-border" type="text" placeholder="Message" required name="Message">
+          <button class="w3-button w3-black w3-section w3-right" type="submit">SEND</button>
+        </form>
+      </div>
+      </div>
+    
+  </div>
+</div>
+
+<!-- End Page Content -->
+</div>
+
+<!-- Image of location/map -->
+<img src="map.jpg" class="w3-image w3-greyscale-min" style="width:100%">
+
+<!-- Footer -->
+<footer class="w3-container w3-padding-64 w3-center w3-opacity w3-light-grey w3-xlarge">
+  <p class="w3-medium"><b>Social</b></p>
+  <a href="https://facebook.com/aayu.shrestha.33" target="_blank"><i class="fa fa-facebook-official w3-hover-opacity"></i></a>
+  <a href="https://instagram.com/aayu.srsta__" target="_blank"><i class="fa fa-instagram w3-hover-opacity"></i></a>
+  <a href="./sc.html" target="_blank"><i class="fa fa-snapchat w3-hover-opacity"></i></a>
+  <a href="https://www.pinterest.com/aayushrestha123/" target="_blank"><i class="fa fa-pinterest-p w3-hover-opacity"></i></a>
+  <a href="https://www.twitter.com/AaYuSrsTa1" target="_blank"><i class="fa fa-twitter w3-hover-opacity"></i></a>
+  <a href="https://www.linkedin.com/in/aayu-shrestha-50546113a/" target="_blank"><i class="fa fa-linkedin w3-hover-opacity"></i>
+  <hr></hr>
+  <p class="w3-medium">© Aayu Shrestha 1999. All rights reserved.</p>
+</footer>
+<script src='./js.js'></script>
+<script>
+  var swiper = new Swiper('.swiper-container', {
+    effect: 'coverflow',
+    grabCursor: true,
+    centeredSlides: true,
+    slidesPerView: 'auto',
+    coverflowEffect: {
+      rotate: 50,
+      stretch: 0,
+      depth: 100,
+      modifier: 1,
+      slideShadows: true,
+    },
+    autoplay:{
+      delay:2500,
+      disableOnInteraction:false
+    },
+    pagination: {
+      el: '.swiper-pagination',
+    },
+  });
+</script>
+
+</body>
+</html>
