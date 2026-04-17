@@ -121,13 +121,14 @@ export default function ProjectModal({ project, onClose }: Props) {
   }, [onClose])
 
   useEffect(() => {
+    if (!project) return
     document.addEventListener('keydown', handleKey)
     document.body.style.overflow = 'hidden'
     return () => {
       document.removeEventListener('keydown', handleKey)
       document.body.style.overflow = ''
     }
-  }, [handleKey])
+  }, [handleKey, project])
 
   return (
     <AnimatePresence>
