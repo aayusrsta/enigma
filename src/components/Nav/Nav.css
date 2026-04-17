@@ -1,0 +1,53 @@
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 48px; height: 62px;
+  background: rgba(8, 8, 8, 0.88);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 0.68rem;
+  color: var(--text); letter-spacing: 0.18em;
+}
+.nav-logo b { color: var(--accent); text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.7); }
+
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-family: var(--mono); font-size: 0.58rem;
+  color: var(--text3); letter-spacing: 0.16em; text-transform: uppercase;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--accent);
+  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
+}
+
+.nav-status {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 0.56rem;
+  color: var(--text3); letter-spacing: 0.12em;
+}
+.nav-ping {
+  width: 5px; height: 5px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent), 0 0 20px rgba(var(--accent-rgb), 0.4);
+  animation: ping 2s infinite;
+  flex-shrink: 0;
+}
+@keyframes ping {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.1; }
+}
+
+@media (max-width: 900px) {
+  .nav { padding: 0 28px; }
+  .nav-links { gap: 20px; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .nav-logo { font-size: 0.6rem; }
+  .nav-status span { display: none; }
+}

@@ -1,0 +1,22 @@
+.marquee-wrap {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 18px 0; overflow: hidden;
+  white-space: nowrap; background: var(--s1);
+}
+.marquee-track {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-item {
+  font-family: var(--mono); font-size: 0.62rem;
+  color: var(--text3); letter-spacing: 0.2em;
+  text-transform: uppercase; margin-right: 48px;
+}
+.marquee-sep {
+  color: var(--accent); font-style: normal; margin-right: 48px;
+}

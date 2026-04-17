@@ -1,7 +1,18 @@
+import React from 'react'
+import Cursor from '@/components/Cursor/Cursor'
+import Nav from '@/components/Nav/Nav'
+import Hero from '@/components/Hero/Hero'
+import Marquee from '@/components/Marquee/Marquee'
+
 export default function Home() {
   return (
-    <main>
-      <p style={{ color: '#fff', padding: '100px 48px' }}>Portfolio loading…</p>
-    </main>
+    <>
+      <Cursor />
+      <Nav />
+      <main>
+        <Hero />
+        <Marquee />
+      </main>
+    </>
   )
 }
