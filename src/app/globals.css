@@ -21,7 +21,12 @@ body {
   color: var(--text);
   font-family: var(--sans);
   overflow-x: hidden;
+  /* custom cursor added in Cursor component — intentional */
   cursor: none;
+}
+/* fallback: restore cursor if JS is disabled */
+@media (prefers-reduced-motion: reduce) {
+  body { cursor: auto; }
 }
 a { text-decoration: none; color: inherit; }
 
