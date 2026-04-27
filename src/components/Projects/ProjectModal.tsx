@@ -17,7 +17,15 @@ function hexToRgb(hex: string) {
 }
 
 function BrowserPreview({ url }: { url: string }) {
+  const [status, setStatus] = useState<'loading' | 'loaded' | 'blocked'>('loading')
   const displayUrl = url.startsWith('/') ? `aayu.com.np${url}` : url.replace(/^https?:\/\//, '')
+  const fullUrl = url.startsWith('/') ? `https://aayu.com.np${url}` : url
+
+  // Cross-origin iframes don't fire onerror — they fire onLoad even when blocked.
+  // Best we can do: mark as loaded after the event, let user open manually if blank.
+  const handleLoad = () => setStatus('loaded')
+  const handleError = () => setStatus('blocked')
+
   return (
     <div className="modal-browser">
       <div className="modal-browser-bar">
@@ -27,13 +35,58 @@ function BrowserPreview({ url }: { url: string }) {
         <div className="modal-browser-url">
           <span>{displayUrl}</span>
         </div>
+        <a
+          href={fullUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ marginLeft: 'auto', fontSize: '0.6rem', color: 'var(--text4)',
+                   textDecoration: 'none', letterSpacing: '0.08em', whiteSpace: 'nowrap',
+                   padding: '2px 8px', border: '1px solid var(--border2)', flexShrink: 0 }}
+        >
+          OPEN ↗
+        </a>
       </div>
-      <iframe
-        className="modal-browser-iframe"
-        src={url}
-        title="Project preview"
-        sandbox="allow-scripts allow-same-origin allow-forms"
-      />
+
+      <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+        {status === 'loading' && (
+          <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
+                        alignItems: 'center', justifyContent: 'center', background: '#0a0a0a',
+                        gap: 12, zIndex: 2 }}>
+            <div style={{ width: 24, height: 24, border: '2px solid var(--border2)',
+                          borderTopColor: 'var(--text3)', borderRadius: '50%',
+                          animation: 'spin 0.8s linear infinite' }} />
+            <span style={{ fontSize: '0.65rem', color: 'var(--text4)', letterSpacing: '0.1em' }}>
+              LOADING PREVIEW
+            </span>
+          </div>
+        )}
+
+        {status === 'blocked' && (
+          <div className="modal-placeholder">
+            <div className="modal-placeholder-icon">🔗</div>
+            <div className="modal-placeholder-title">Preview Unavailable</div>
+            <div className="modal-placeholder-text">
+              This site can't be embedded. Click to open it directly.
+            </div>
+            <a href={fullUrl} target="_blank" rel="noopener noreferrer"
+              style={{ marginTop: 16, padding: '8px 20px', background: 'var(--text)',
+                       color: '#000', fontSize: '0.7rem', letterSpacing: '0.1em',
+                       textDecoration: 'none', fontWeight: 700 }}>
+              OPEN SITE ↗
+            </a>
+          </div>
+        )}
+
+        <iframe
+          className="modal-browser-iframe"
+          src={url}
+          title="Project preview"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
+          onLoad={handleLoad}
+          onError={handleError}
+          style={{ opacity: status === 'loaded' ? 1 : 0, transition: 'opacity 0.3s' }}
+        />
+      </div>
     </div>
   )
 }
@@ -91,14 +144,22 @@ function MobilePreview({ screenshots, color }: { screenshots: string[]; color: s
   )
 }
 
-function InternalPlaceholder() {
+function InternalPlaceholder({ appLinks }: { appLinks?: { web?: string } }) {
   return (
     <div className="modal-placeholder">
       <div className="modal-placeholder-icon">&#128274;</div>
-      <div className="modal-placeholder-title">Internal Application</div>
+      <div className="modal-placeholder-title">Private Application</div>
       <div className="modal-placeholder-text">
-        This is a private web application built for a client. Screenshots are not publicly available.
+        This application requires authentication. Click below to open it directly.
       </div>
+      {appLinks?.web && (
+        <a href={appLinks.web} target="_blank" rel="noopener noreferrer"
+          style={{ marginTop: 16, padding: '8px 20px', background: 'var(--text)',
+                   color: '#000', fontSize: '0.7rem', letterSpacing: '0.1em',
+                   textDecoration: 'none', fontWeight: 700 }}>
+          OPEN APP ↗
+        </a>
+      )}
     </div>
   )
 }
@@ -195,7 +256,7 @@ export default function ProjectModal({ project, onClose }: Props) {
               {project.previewType === 'mobile' && project.screenshots && (
                 <MobilePreview screenshots={project.screenshots} color={project.color} />
               )}
-              {project.previewType === 'internal' && <InternalPlaceholder />}
+              {project.previewType === 'internal' && <InternalPlaceholder appLinks={project.appLinks} />}
               {project.previewType === 'wip' && <WipPlaceholder />}
             </div>
           </motion.div>
