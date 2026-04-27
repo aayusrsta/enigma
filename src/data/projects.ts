@@ -117,6 +117,20 @@ export const professionalProjects: Project[] = [
 
 export const personalProjects: Project[] = [
   {
+    id: 'love-melodies-studio',
+    num: 'PERSONAL_04',
+    name: 'Love Melodies Studio',
+    desc: 'Private AI-powered YouTube automation studio for the Love Melodies channel. Generates viral-quality song lyrics via Gemini AI, produces cinematic instrumental music, renders animated lyrical videos with FFmpeg, auto-generates SEO thumbnails and uploads everything to YouTube daily — all triggered with one button.',
+    tags: ['FASTAPI', 'REACT', 'GEMINI AI', 'FFMPEG', 'YOUTUBE API'],
+    url: '/studio-love-melodies',
+    color: '#ec4899',
+    previewType: 'web',
+    previewUrl: '/studio-love-melodies',
+    appLinks: { web: 'https://aayu.com.np/studio-love-melodies' },
+    year: '2025',
+    role: 'Personal Project',
+  },
+  {
     id: 'ecommerce',
     num: 'PERSONAL_01',
     name: 'E-Commerce Dashboard',
