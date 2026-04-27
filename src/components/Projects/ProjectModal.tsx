@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Project } from '@/data/projects'
 import './ProjectModal.css'
@@ -18,13 +18,37 @@ function hexToRgb(hex: string) {
 
 function BrowserPreview({ url }: { url: string }) {
   const [status, setStatus] = useState<'loading' | 'loaded' | 'blocked'>('loading')
-  const displayUrl = url.startsWith('/') ? `aayu.com.np${url}` : url.replace(/^https?:\/\//, '')
-  const fullUrl = url.startsWith('/') ? `https://aayu.com.np${url}` : url
+  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
-  // Cross-origin iframes don't fire onerror — they fire onLoad even when blocked.
-  // Best we can do: mark as loaded after the event, let user open manually if blank.
-  const handleLoad = () => setStatus('loaded')
-  const handleError = () => setStatus('blocked')
+  const fullUrl = url.startsWith('/') ? `https://aayu.com.np${url}` : url
+  const displayUrl = fullUrl.replace(/^https?:\/\//, '')
+
+  const checkIfBlocked = useCallback(() => {
+    const iframe = iframeRef.current
+    if (!iframe) return
+    try {
+      // Same-origin: we can read contentDocument — check if it's actually empty (blocked)
+      const doc = iframe.contentDocument
+      if (!doc || doc.body.innerHTML.trim() === '') {
+        setStatus('blocked')
+      } else {
+        setStatus('loaded')
+      }
+    } catch {
+      // Cross-origin SecurityError means the page DID load (just can't read it) → show it
+      setStatus('loaded')
+    }
+  }, [])
+
+  const handleLoad = useCallback(() => {
+    // Give browser 300ms to render content before checking
+    timerRef.current = setTimeout(checkIfBlocked, 300)
+  }, [checkIfBlocked])
+
+  useEffect(() => {
+    return () => { if (timerRef.current) clearTimeout(timerRef.current) }
+  }, [])
 
   return (
     <div className="modal-browser">
@@ -32,22 +56,16 @@ function BrowserPreview({ url }: { url: string }) {
         <div className="modal-browser-dot" />
         <div className="modal-browser-dot" />
         <div className="modal-browser-dot" />
-        <div className="modal-browser-url">
-          <span>{displayUrl}</span>
-        </div>
-        <a
-          href={fullUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+        <div className="modal-browser-url"><span>{displayUrl}</span></div>
+        <a href={fullUrl} target="_blank" rel="noopener noreferrer"
           style={{ marginLeft: 'auto', fontSize: '0.6rem', color: 'var(--text4)',
                    textDecoration: 'none', letterSpacing: '0.08em', whiteSpace: 'nowrap',
-                   padding: '2px 8px', border: '1px solid var(--border2)', flexShrink: 0 }}
-        >
+                   padding: '2px 8px', border: '1px solid var(--border2)', flexShrink: 0 }}>
           OPEN ↗
         </a>
       </div>
 
-      <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
+      <div style={{ position: 'relative', flex: 1, overflow: 'hidden', display: 'flex' }}>
         {status === 'loading' && (
           <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column',
                         alignItems: 'center', justifyContent: 'center', background: '#0a0a0a',
@@ -62,11 +80,11 @@ function BrowserPreview({ url }: { url: string }) {
         )}
 
         {status === 'blocked' && (
-          <div className="modal-placeholder">
+          <div className="modal-placeholder" style={{ flex: 1 }}>
             <div className="modal-placeholder-icon">🔗</div>
             <div className="modal-placeholder-title">Preview Unavailable</div>
             <div className="modal-placeholder-text">
-              This site can't be embedded. Click to open it directly.
+              This site doesn&apos;t allow embedding. Open it directly instead.
             </div>
             <a href={fullUrl} target="_blank" rel="noopener noreferrer"
               style={{ marginTop: 16, padding: '8px 20px', background: 'var(--text)',
@@ -78,13 +96,15 @@ function BrowserPreview({ url }: { url: string }) {
         )}
 
         <iframe
+          ref={iframeRef}
           className="modal-browser-iframe"
-          src={url}
+          src={fullUrl}
           title="Project preview"
           sandbox="allow-scripts allow-same-origin allow-forms allow-popups"
           onLoad={handleLoad}
-          onError={handleError}
-          style={{ opacity: status === 'loaded' ? 1 : 0, transition: 'opacity 0.3s' }}
+          style={{ opacity: status === 'loaded' ? 1 : 0,
+                   transition: 'opacity 0.3s',
+                   display: status === 'blocked' ? 'none' : 'block' }}
         />
       </div>
     </div>
@@ -144,20 +164,24 @@ function MobilePreview({ screenshots, color }: { screenshots: string[]; color: s
   )
 }
 
-function InternalPlaceholder({ appLinks }: { appLinks?: { web?: string } }) {
+function InternalPlaceholder({ appLinks, isPrivate = false }: { appLinks?: { web?: string }; isPrivate?: boolean }) {
   return (
     <div className="modal-placeholder">
-      <div className="modal-placeholder-icon">&#128274;</div>
-      <div className="modal-placeholder-title">Private Application</div>
+      <div className="modal-placeholder-icon">{isPrivate ? '🔒' : '🔗'}</div>
+      <div className="modal-placeholder-title">
+        {isPrivate ? 'Private Application' : 'Live Preview'}
+      </div>
       <div className="modal-placeholder-text">
-        This application requires authentication. Click below to open it directly.
+        {isPrivate
+          ? 'This application requires authentication. Open it directly to use it.'
+          : 'Click below to open the live site in a new tab.'}
       </div>
       {appLinks?.web && (
         <a href={appLinks.web} target="_blank" rel="noopener noreferrer"
           style={{ marginTop: 16, padding: '8px 20px', background: 'var(--text)',
                    color: '#000', fontSize: '0.7rem', letterSpacing: '0.1em',
                    textDecoration: 'none', fontWeight: 700 }}>
-          OPEN APP ↗
+          {isPrivate ? 'OPEN APP ↗' : 'OPEN SITE ↗'}
         </a>
       )}
     </div>
@@ -256,7 +280,12 @@ export default function ProjectModal({ project, onClose }: Props) {
               {project.previewType === 'mobile' && project.screenshots && (
                 <MobilePreview screenshots={project.screenshots} color={project.color} />
               )}
-              {project.previewType === 'internal' && <InternalPlaceholder appLinks={project.appLinks} />}
+              {project.previewType === 'internal' && (
+                <InternalPlaceholder
+                  appLinks={project.appLinks}
+                  isPrivate={project.id === 'love-melodies-studio' || project.id === 'interpreter' || project.id === 'pixel-revive'}
+                />
+              )}
               {project.previewType === 'wip' && <WipPlaceholder />}
             </div>
           </motion.div>
