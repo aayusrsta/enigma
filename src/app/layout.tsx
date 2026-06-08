@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Mono, Dancing_Script } from 'next/font/google'
+import { Inter, Space_Mono, Poppins } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -17,10 +17,10 @@ const spaceMono = Space_Mono({
   display: 'swap',
 })
 
-const dancingScript = Dancing_Script({
+const poppins = Poppins({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-brush',
+  weight: ['600', '700', '800'],
+  variable: '--font-title',
   display: 'swap',
 })
 
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceMono.variable} ${dancingScript.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable} ${poppins.variable}`}>
       <head>
         <link rel="preconnect" href="https://fonts.cdnfonts.com" />
         <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/bastliga-one" />
