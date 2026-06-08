@@ -89,7 +89,7 @@ export const professionalProjects: Project[] = [
     tags: ['REACT NATIVE', 'REDUX', 'NODE.JS'],
     url: 'https://play.google.com/store/apps/details?id=com.giblintranet&pli=1',
     color: '#f59e0b',
-    cardImage: '/projects/global-chautari.webp',
+    cardImage: '/projects/global-chautari.png',
     previewType: 'mobile',
     screenshots: ['/projects/global-chautari.webp'],
     appLinks: {
