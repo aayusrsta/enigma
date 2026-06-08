@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Mono, Dancing_Script, Sacramento } from 'next/font/google'
+import { Inter, Space_Mono, Dancing_Script } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -24,13 +24,6 @@ const dancingScript = Dancing_Script({
   display: 'swap',
 })
 
-const sacramento = Sacramento({
-  subsets: ['latin'],
-  weight: ['400'],
-  variable: '--font-sig',
-  display: 'swap',
-})
-
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
@@ -49,7 +42,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceMono.variable} ${dancingScript.variable} ${sacramento.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable} ${dancingScript.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.cdnfonts.com" />
+        <link rel="stylesheet" href="https://fonts.cdnfonts.com/css/bastliga-one" />
+      </head>
       <body>{children}</body>
     </html>
   )

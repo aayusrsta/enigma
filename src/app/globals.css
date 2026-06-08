@@ -13,7 +13,7 @@
   --mono:        var(--font-mono), 'Space Mono', monospace;
   --sans:        var(--font-inter), 'Inter', sans-serif;
   --brush:       var(--font-brush), 'Dancing Script', cursive;
-  --sig:         var(--font-sig), 'Sacramento', cursive;
+  --sig:         'Bastliga One', cursive;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
