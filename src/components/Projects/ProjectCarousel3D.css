@@ -2,8 +2,8 @@
 .csl3d-wrapper {
   position: relative;
   width: 100%;
-  height: 560px;
-  overflow: hidden;
+  height: 600px;          /* tall enough to never crop 440px cards */
+  overflow: visible;      /* do NOT clip — cards bleed past the edge in 3D */
   user-select: none;
 }
 
@@ -12,10 +12,11 @@
   position: absolute;
   inset: 0;
   cursor: grab;
+  overflow: visible;
 }
 .csl3d-mount:active { cursor: grabbing; }
 
-/* CSS3DRenderer container — allow cards to render outside mount bounds */
+/* CSS3DRenderer inner containers must never clip */
 .csl3d-mount > div,
 .csl3d-mount > div > div {
   overflow: visible !important;
@@ -69,7 +70,7 @@
 /* ── Footer ──────────────────────────────────────────────── */
 .csl3d-footer {
   position: absolute;
-  bottom: 12px;
+  bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -109,16 +110,8 @@
   width: 20px;
 }
 
-/* ── Card inside host: disable 3D tilt, fix dimensions ───── */
-/* Three.js moves host divs into its container; proj-card must fill exactly */
-.proj-card {
-  /* tilt hook applies transform — neutralise it inside 3D scene */
-}
-/* The host divs (created in JS) are sized at CARD_W × CARD_H;
-   the proj-card already has height: 440px — override to match host */
-
 @media (max-width: 768px) {
-  .csl3d-wrapper { height: 500px; }
+  .csl3d-wrapper { height: 540px; }
   .csl3d-vignette { width: 80px; }
   .csl-arrow--left  { left: 8px; }
   .csl-arrow--right { right: 8px; }

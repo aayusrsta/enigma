@@ -6,7 +6,7 @@ import ProjectCard from './ProjectCard'
 import './ProjectCarousel3D.css'
 
 const CARD_W   = 270
-const CARD_H   = 420
+const CARD_H   = 440   // must match .proj-card height: 440px
 const RADIUS   = 530
 const CAMERA_Z = 1080
 const LERP     = 0.08
@@ -18,8 +18,9 @@ interface Props {
 }
 
 export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
-  const mountRef  = useRef<HTMLDivElement>(null)
-  const goToRef   = useRef<(i: number) => void>(() => {})
+  const mountRef      = useRef<HTMLDivElement>(null)
+  const goToRef       = useRef<(i: number) => void>(() => {})
+  const activeIdxRef  = useRef(0)
   const [activeIdx, setActiveIdx] = useState(0)
 
   useEffect(() => {
@@ -101,13 +102,16 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         S.vel       = 0
       }
 
-      /* ── Pointer handlers (drag-only, no scroll) ─────────── */
+      /* ── Pointer handlers ───────────────────────────────────
+         - pointerdown on mount starts a drag
+         - pointermove / pointerup on WINDOW so drag works if mouse
+           leaves the mount, and so we do NOT steal clicks from cards
+           (setPointerCapture would intercept them)
+      ──────────────────────────────────────────────────────── */
       const onDown = (e: PointerEvent) => {
         S.dragging = true
         S.dragX0 = S.dragX = e.clientX
         S.vel = 0
-        mount.setPointerCapture(e.pointerId)
-        mount.style.cursor = 'grabbing'
       }
 
       const onMove = (e: PointerEvent) => {
@@ -117,19 +121,23 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         const delta = -(dx / W) * Math.PI * 2.4
         S.tgt      += delta
         S.vel       = delta
-        e.preventDefault()
       }
 
       const onUp = (e: PointerEvent) => {
         if (!S.dragging) return
-        S.dragging         = false
-        mount.style.cursor = 'grab'
+        S.dragging = false
+
+        const moved = Math.abs(e.clientX - S.dragX0)
+        if (moved < 6) {
+          // Treat as a click: open modal for the active card
+          onCardClick(projects[activeIdxRef.current])
+        }
         snap()
       }
 
-      mount.addEventListener('pointerdown', onDown)
-      mount.addEventListener('pointermove', onMove, { passive: false })
-      mount.addEventListener('pointerup',   onUp)
+      mount.addEventListener('pointerdown',  onDown)
+      window.addEventListener('pointermove', onMove)
+      window.addEventListener('pointerup',   onUp)
 
       /* ── RAF loop ────────────────────────────────────────── */
       const animate = () => {
@@ -163,9 +171,10 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
           )
         })
 
-        /* Active index */
+        /* Active index — keep ref in sync for click handler closure */
         const raw = ((-S.cur % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)
         const idx = Math.round(raw / step) % N
+        activeIdxRef.current = idx
         setActiveIdx(prev => prev !== idx ? idx : prev)
 
         renderer.render(scene, camera)
@@ -183,12 +192,11 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
 
       cleanupFn = () => {
         cancelAnimationFrame(rafId)
-        mount.removeEventListener('pointerdown', onDown)
-        mount.removeEventListener('pointermove', onMove)
-        mount.removeEventListener('pointerup',   onUp)
-        window.removeEventListener('resize',     onResize)
+        mount.removeEventListener('pointerdown',  onDown)
+        window.removeEventListener('pointermove', onMove)
+        window.removeEventListener('pointerup',   onUp)
+        window.removeEventListener('resize',      onResize)
         if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
-        // Unmount independent React roots
         roots.forEach(r => { try { r.unmount() } catch {} })
       }
     })()
