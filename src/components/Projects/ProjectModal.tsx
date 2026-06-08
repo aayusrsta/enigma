@@ -269,6 +269,11 @@ export default function ProjectModal({ project, onClose }: Props) {
                     APP STORE <span>&#x2197;</span>
                   </a>
                 )}
+                {project.appLinks?.admin && (
+                  <a className="modal-link" href={project.appLinks.admin} target="_blank" rel="noopener noreferrer">
+                    ADMIN PANEL <span>&#x2197;</span>
+                  </a>
+                )}
               </div>
             </div>
 

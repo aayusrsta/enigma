@@ -2,6 +2,7 @@ export interface AppLinks {
   android?: string
   ios?: string
   web?: string
+  admin?: string
 }
 
 export interface Project {
@@ -119,14 +120,15 @@ export const personalProjects: Project[] = [
     id: 'sports-platform',
     num: 'PERSONAL_05',
     name: 'Sports Prediction Platform',
-    desc: 'Full-stack multi-sport prediction engine built from scratch. Users predict match outcomes, score points, and climb leaderboards across football, F1, UFC, NBA, cricket and more. Features real-time ESPN data sync, competition access control with admin approval, dynamic branding, and a complete admin panel for managing sports, fixtures, participants, and predictions.',
-    tags: ['REACT', 'NODE.JS', 'PRISMA', 'POSTGRES', 'VERCEL'],
+    desc: 'Full-stack multi-sport prediction engine built from scratch — user app and a full admin panel. Users predict match outcomes across Football, F1, UFC, NBA & Cricket, score points, and climb leaderboards. Admins manage sports, competitions, fixtures, participants, prediction params and user access through a dedicated panel. Real-time ESPN data sync, Vercel Blob uploads, Neon Postgres, TOTP 2FA, and cookie-based auth that works on all browsers including iOS Safari.',
+    tags: ['REACT', 'NODE.JS', 'PRISMA', 'NEON POSTGRES', 'VERCEL'],
     url: 'https://sp-web-iota.vercel.app',
     color: '#2563eb',
     previewType: 'web',
     previewUrl: 'https://sp-web-iota.vercel.app',
     appLinks: {
       web: 'https://sp-web-iota.vercel.app',
+      admin: 'https://sp-admin-nu.vercel.app',
     },
     year: '2026',
     role: 'Personal Project — Full Stack',
