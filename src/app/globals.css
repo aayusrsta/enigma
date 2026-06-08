@@ -6,8 +6,8 @@
   --border2:     #2a2a2a;
   --text:        #ffffff;
   --text2:       #b0b0b0;
-  --text3:       #555555;
-  --text4:       #333333;
+  --text3:       #888888;
+  --text4:       #666666;
   --accent:      #5eead4;
   --accent-rgb:  94, 234, 212;
   --mono:        var(--font-mono), 'Space Mono', monospace;

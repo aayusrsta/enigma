@@ -2,7 +2,7 @@ import React from 'react'
 import Cursor from '@/components/Cursor/Cursor'
 import Nav from '@/components/Nav/Nav'
 import Hero from '@/components/Hero/Hero'
-import Marquee from '@/components/Marquee/Marquee'
+
 import Projects from '@/components/Projects/Projects'
 import About from '@/components/About/About'
 import Stack from '@/components/Stack/Stack'
@@ -17,7 +17,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <Marquee />
+
         <Projects />
         <About />
         <Stack />
