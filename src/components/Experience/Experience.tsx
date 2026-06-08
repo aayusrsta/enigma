@@ -19,8 +19,7 @@ export default function Experience() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="sec-num">05</span>
-        <span className="sec-label">// EXPERIENCE</span>
+        <span className="sec-title">Experience</span>
         <div className="sec-rule" />
       </motion.div>
 

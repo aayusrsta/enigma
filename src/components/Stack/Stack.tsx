@@ -17,8 +17,7 @@ export default function Stack() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="sec-num">04</span>
-        <span className="sec-label">// TECH STACK</span>
+        <span className="sec-title">Tech Stack</span>
         <div className="sec-rule" />
       </motion.div>
 

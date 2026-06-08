@@ -24,8 +24,7 @@ export default function About() {
         viewport={{ once: true, amount: 0.3 }}
         transition={{ duration: 0.6 }}
       >
-        <span className="sec-num">03</span>
-        <span className="sec-label">// ABOUT</span>
+        <span className="sec-title">About</span>
         <div className="sec-rule" />
       </motion.div>
 

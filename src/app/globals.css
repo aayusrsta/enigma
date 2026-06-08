@@ -12,6 +12,7 @@
   --accent-rgb:  232, 232, 232;
   --mono:        var(--font-mono), 'Space Mono', monospace;
   --sans:        var(--font-inter), 'Inter', sans-serif;
+  --brush:       var(--font-brush), 'Dancing Script', cursive;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -49,18 +50,20 @@ body::before {
   border-bottom: 1px solid var(--border);
 }
 .sec-head {
-  display: flex; align-items: center; gap: 14px;
+  display: flex; align-items: baseline; gap: 24px;
   margin-bottom: 60px;
 }
-.sec-num {
-  font-family: var(--mono); font-size: 0.58rem;
-  color: rgba(255,255,255,0.4); letter-spacing: 0.2em;
+.sec-title {
+  font-family: var(--brush);
+  font-size: 2.8rem; font-weight: 600;
+  color: #fff; line-height: 1; flex-shrink: 0;
+  letter-spacing: 0.01em;
+  text-shadow: 0 0 80px rgba(255,255,255,0.1);
 }
-.sec-label {
-  font-family: var(--mono); font-size: 0.58rem;
-  color: var(--text4); letter-spacing: 0.2em; text-transform: uppercase;
+.sec-rule {
+  flex: 1; height: 1px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.12), transparent);
 }
-.sec-rule { flex: 1; height: 1px; background: var(--border); }
 .sec-extra {
   font-family: var(--mono); font-size: 0.52rem;
   color: var(--text4); letter-spacing: 0.15em;

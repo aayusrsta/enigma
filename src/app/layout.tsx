@@ -1,6 +1,6 @@
 import React from 'react'
 import type { Metadata, Viewport } from 'next'
-import { Inter, Space_Mono } from 'next/font/google'
+import { Inter, Space_Mono, Dancing_Script } from 'next/font/google'
 import './globals.css'
 
 const inter = Inter({
@@ -14,6 +14,13 @@ const spaceMono = Space_Mono({
   subsets: ['latin'],
   weight: ['400', '700'],
   variable: '--font-mono',
+  display: 'swap',
+})
+
+const dancingScript = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-brush',
   display: 'swap',
 })
 
@@ -35,7 +42,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${inter.variable} ${spaceMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${spaceMono.variable} ${dancingScript.variable}`}>
       <body>{children}</body>
     </html>
   )
