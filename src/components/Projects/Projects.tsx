@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { professionalProjects, personalProjects, type Project } from '@/data/projects'
 import ProjectCard from './ProjectCard'
-import ProjectCarousel from './ProjectCarousel'
+import ProjectCarousel3D from './ProjectCarousel3D'
 import ProjectModal from './ProjectModal'
 import './Projects.css'
 
@@ -112,7 +112,8 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }}
               exit={{ opacity: 0, scale: 0.96, transition: { duration: 0.22 } }}
             >
-              <ProjectCarousel
+                <ProjectCarousel3D
+                key={activeTab}
                 projects={activeProjects}
                 onCardClick={setSelected}
               />
