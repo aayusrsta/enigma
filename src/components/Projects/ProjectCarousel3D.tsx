@@ -1,17 +1,16 @@
 'use client'
 import React, { useEffect, useRef, useState, useCallback } from 'react'
-import { createPortal } from 'react-dom'
+import { createRoot, type Root } from 'react-dom/client'
 import type { Project } from '@/data/projects'
 import ProjectCard from './ProjectCard'
 import './ProjectCarousel3D.css'
 
-/* ── Constants ────────────────────────────────────────────── */
-const CARD_W    = 270
-const CARD_H    = 420
-const RADIUS    = 530
-const CAMERA_Z  = 1080
-const LERP      = 0.072        // approach speed
-const DECAY     = 0.86         // momentum damping per frame
+const CARD_W   = 270
+const CARD_H   = 420
+const RADIUS   = 530
+const CAMERA_Z = 1080
+const LERP     = 0.08
+const DECAY    = 0.87
 
 interface Props {
   projects: Project[]
@@ -19,41 +18,32 @@ interface Props {
 }
 
 export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
-  const mountRef   = useRef<HTMLDivElement>(null)
-  const goToRef    = useRef<(i: number) => void>(() => {})
+  const mountRef  = useRef<HTMLDivElement>(null)
+  const goToRef   = useRef<(i: number) => void>(() => {})
   const [activeIdx, setActiveIdx] = useState(0)
-  const [ready, setReady]         = useState(false)
 
-  /* Stable card host elements (one div per project card) */
-  const hostsRef = useRef<HTMLDivElement[]>([])
   useEffect(() => {
-    hostsRef.current = projects.map(() => {
-      const el = document.createElement('div')
-      el.style.cssText = `width:${CARD_W}px;height:${CARD_H}px;`
-      return el
-    })
-    setReady(true)
-    return () => { hostsRef.current = [] }
-  }, [projects])
-
-  /* ── Three.js init ──────────────────────────────────────── */
-  useEffect(() => {
-    if (!ready || !mountRef.current) return
+    if (!mountRef.current) return
     const mount = mountRef.current
     let rafId: number
-
-    /* Mutable loop state – shared between handlers & RAF */
-    const S = {
-      cur: 0,      // current scene rotation (radians)
-      tgt: 0,      // target rotation
-      vel: 0,      // momentum velocity
-      dragging: false,
-      dragX0: 0,   // pointer X at drag start (for click vs drag)
-      dragX: 0,    // last pointer X
-      snapping: false,
-    }
-
     let cleanupFn: () => void
+
+    // Create one host div + one React root per card
+    const hosts: HTMLDivElement[] = []
+    const roots: Root[]           = []
+
+    projects.forEach((p, i) => {
+      const el = document.createElement('div')
+      el.style.cssText = `width:${CARD_W}px;height:${CARD_H}px;cursor:pointer;`
+      hosts.push(el)
+
+      // Independent React root — survives being moved by CSS3DRenderer
+      const root = createRoot(el)
+      root.render(
+        <ProjectCard project={p} onClick={onCardClick} />
+      )
+      roots.push(root)
+    })
 
     ;(async () => {
       const THREE = await import('three')
@@ -61,26 +51,26 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         'three/addons/renderers/CSS3DRenderer.js'
       )
 
-      const W = mount.clientWidth
-      const H = mount.clientHeight
-      const N = projects.length
-      const step = (2 * Math.PI) / N   // radians between cards
+      const N    = projects.length
+      const step = (2 * Math.PI) / N
+      const W    = mount.clientWidth
+      const H    = mount.clientHeight
 
-      /* Scene */
+      /* Scene + Camera */
       const scene  = new THREE.Scene()
       const camera = new THREE.PerspectiveCamera(42, W / H, 1, 10000)
       camera.position.z = CAMERA_Z
 
-      /* Renderer */
+      /* CSS3DRenderer */
       const renderer = new CSS3DRenderer()
       renderer.setSize(W, H)
-      renderer.domElement.style.position = 'absolute'
-      renderer.domElement.style.top = '0'
-      renderer.domElement.style.left = '0'
+      renderer.domElement.style.cssText =
+        'position:absolute;top:0;left:0;overflow:visible;'
       mount.appendChild(renderer.domElement)
 
-      /* Place cards on cylinder */
-      hostsRef.current.forEach((el, i) => {
+      /* Place cards on the cylinder */
+      const objects: InstanceType<typeof CSS3DObject>[] = []
+      hosts.forEach((el, i) => {
         const obj  = new CSS3DObject(el)
         const ang  = i * step
         obj.position.set(
@@ -90,35 +80,34 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         )
         obj.rotation.y = ang
         scene.add(obj)
+        objects.push(obj)
       })
 
-      /* Snap: align to nearest card */
+      /* ── Loop state ──────────────────────────────────────── */
+      const S = {
+        cur: 0, tgt: 0, vel: 0,
+        dragging: false, dragX0: 0, dragX: 0,
+      }
+
       const snap = () => {
-        const nearest = Math.round(S.tgt / step) * step
-        S.tgt = nearest
+        S.tgt = Math.round(S.tgt / step) * step
         S.vel = 0
-        S.snapping = true
       }
 
-      /* External navigate */
       goToRef.current = (i: number) => {
-        /* Find the shortest rotation to card i */
-        const target = -i * step
-        const raw    = target - S.tgt
-        const turns  = Math.round(raw / (2 * Math.PI))
-        S.tgt = S.tgt + raw - turns * (2 * Math.PI)
-        S.vel = 0
-        S.snapping = true
+        const raw   = -i * step - S.tgt
+        const turns = Math.round(raw / (2 * Math.PI))
+        S.tgt      += raw - turns * (2 * Math.PI)
+        S.vel       = 0
       }
 
-      /* ── Pointer handlers ────────────────────────────────── */
+      /* ── Pointer handlers (drag-only, no scroll) ─────────── */
       const onDown = (e: PointerEvent) => {
         S.dragging = true
-        S.dragX0   = e.clientX
-        S.dragX    = e.clientX
-        S.vel      = 0
-        S.snapping = false
+        S.dragX0 = S.dragX = e.clientX
+        S.vel = 0
         mount.setPointerCapture(e.pointerId)
+        mount.style.cursor = 'grabbing'
       }
 
       const onMove = (e: PointerEvent) => {
@@ -127,52 +116,31 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         S.dragX     = e.clientX
         const delta = -(dx / W) * Math.PI * 2.4
         S.tgt      += delta
-        S.vel       = delta           // raw frame velocity
+        S.vel       = delta
         e.preventDefault()
       }
 
       const onUp = (e: PointerEvent) => {
         if (!S.dragging) return
-        S.dragging = false
-        if (Math.abs(e.clientX - S.dragX0) < 8) {
-          /* It was a click – let the React onClick on the card fire */
-          snap()
-        } else {
-          /* Apply a little momentum then snap */
-          snap()
-        }
-      }
-
-      const onWheel = (e: WheelEvent) => {
-        e.preventDefault()
-        S.tgt += (e.deltaY > 0 ? 1 : -1) * step
+        S.dragging         = false
+        mount.style.cursor = 'grab'
         snap()
       }
 
-      mount.addEventListener('pointerdown',  onDown)
-      mount.addEventListener('pointermove',  onMove, { passive: false })
-      mount.addEventListener('pointerup',    onUp)
-      mount.addEventListener('wheel',        onWheel, { passive: false })
+      mount.addEventListener('pointerdown', onDown)
+      mount.addEventListener('pointermove', onMove, { passive: false })
+      mount.addEventListener('pointerup',   onUp)
 
       /* ── RAF loop ────────────────────────────────────────── */
       const animate = () => {
         rafId = requestAnimationFrame(animate)
 
         if (S.dragging) {
-          /* Follow cursor exactly */
           S.cur = S.tgt
         } else {
-          /* Apply decaying momentum */
-          if (!S.snapping && Math.abs(S.vel) > 0.0003) {
-            S.tgt += S.vel
-            S.vel *= DECAY
-            if (Math.abs(S.vel) < 0.0003) snap()
-          }
-          /* Smooth lerp toward target */
           const diff = S.tgt - S.cur
-          if (Math.abs(diff) < 0.00015) {
+          if (Math.abs(diff) < 0.0001) {
             S.cur = S.tgt
-            S.snapping = false
           } else {
             S.cur += diff * LERP
           }
@@ -180,27 +148,24 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
 
         scene.rotation.y = S.cur
 
-        /* Per-card visual state */
-        hostsRef.current.forEach((el, i) => {
+        /* Per-card opacity */
+        hosts.forEach((el, i) => {
           let off = (i * step + S.cur) % (2 * Math.PI)
           if (off >  Math.PI) off -= 2 * Math.PI
           if (off < -Math.PI) off += 2 * Math.PI
           const abs = Math.abs(off)
 
-          const opacity = abs < 0.12   ? 1
-                        : abs < step   ? 0.58
-                        : abs < step*2 ? 0.22
-                        : 0.06
-
-          el.style.opacity    = String(opacity)
-          el.style.transition = S.dragging
-            ? 'opacity 0.05s'
-            : 'opacity 0.35s ease'
+          el.style.opacity = String(
+            abs < 0.12   ? 1
+            : abs < step ? 0.55
+            : abs < step * 2 ? 0.2
+            : 0.05
+          )
         })
 
-        /* Active index for dots / name */
-        const raw  = ((-S.cur % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)
-        const idx  = Math.round(raw / step) % N
+        /* Active index */
+        const raw = ((-S.cur % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI)
+        const idx = Math.round(raw / step) % N
         setActiveIdx(prev => prev !== idx ? idx : prev)
 
         renderer.render(scene, camera)
@@ -221,17 +186,17 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         mount.removeEventListener('pointerdown', onDown)
         mount.removeEventListener('pointermove', onMove)
         mount.removeEventListener('pointerup',   onUp)
-        mount.removeEventListener('wheel',       onWheel)
         window.removeEventListener('resize',     onResize)
         if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
-
+        // Unmount independent React roots
+        roots.forEach(r => { try { r.unmount() } catch {} })
       }
     })()
 
     return () => cleanupFn?.()
-  }, [ready, projects])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [projects])
 
-  /* Arrows */
   const N    = projects.length
   const prev = useCallback(() => goToRef.current((activeIdx - 1 + N) % N), [activeIdx, N])
   const next = useCallback(() => goToRef.current((activeIdx + 1) % N), [activeIdx, N])
@@ -248,17 +213,7 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
 
   return (
     <div className="csl3d-wrapper">
-      {/* Three.js mounts here */}
       <div ref={mountRef} className="csl3d-mount" />
-
-      {/* React portals render card JSX into Three.js host divs */}
-      {ready && hostsRef.current.map((el, i) =>
-        createPortal(
-          <ProjectCard project={projects[i]} onClick={onCardClick} />,
-          el,
-          projects[i].id,
-        )
-      )}
 
       {/* Depth vignettes */}
       <div className="csl3d-vignette csl3d-vignette--left" />
@@ -276,7 +231,7 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         </svg>
       </button>
 
-      {/* Footer: project name + dots */}
+      {/* Name + dots */}
       <div className="csl3d-footer">
         <p className="csl3d-name">{projects[activeIdx]?.name}</p>
         <div className="csl-dots">

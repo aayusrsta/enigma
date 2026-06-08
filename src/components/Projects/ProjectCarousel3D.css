@@ -15,9 +15,10 @@
 }
 .csl3d-mount:active { cursor: grabbing; }
 
-/* CSS3DRenderer container — Three.js sets transform-style, perspective, etc. */
-.csl3d-mount > div {
-  perspective: 1200px !important;
+/* CSS3DRenderer container — allow cards to render outside mount bounds */
+.csl3d-mount > div,
+.csl3d-mount > div > div {
+  overflow: visible !important;
 }
 
 /* ── Depth vignettes ─────────────────────────────────────── */
@@ -108,15 +109,13 @@
   width: 20px;
 }
 
-/* ── Card host element overrides ─────────────────────────── */
-/* Three.js moves the host divs into its own container tree.
-   We need proj-card to fill the host exactly without distortion. */
-.csl3d-mount .proj-card,
-.csl3d-mount [class*="proj-card"] {
-  height: 420px;
-  width: 270px;
-  transform: none !important; /* disable 3D tilt inside Three.js 3D */
+/* ── Card inside host: disable 3D tilt, fix dimensions ───── */
+/* Three.js moves host divs into its container; proj-card must fill exactly */
+.proj-card {
+  /* tilt hook applies transform — neutralise it inside 3D scene */
 }
+/* The host divs (created in JS) are sized at CARD_W × CARD_H;
+   the proj-card already has height: 440px — override to match host */
 
 @media (max-width: 768px) {
   .csl3d-wrapper { height: 500px; }
