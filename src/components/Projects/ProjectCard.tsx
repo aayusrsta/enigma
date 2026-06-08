@@ -43,27 +43,38 @@ export default function ProjectCard({ project, onClick }: Props) {
 
 
       {/* Preview strip */}
-      <div className="proj-card__preview">
-        <div className="proj-card__preview-bg" />
-        <div className="proj-card__preview-grid" />
+      <div
+        className="proj-card__preview"
+        style={project.cardImage ? {
+          backgroundImage: `url(${project.cardImage})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+        } : undefined}
+      >
+        {/* Overlay — lighter when image present so it stays visible */}
         <div
-          className="proj-card__preview-orb"
-          style={{
-            background: `radial-gradient(circle, ${project.color}30 0%, transparent 70%)`,
-          }}
+          className="proj-card__preview-bg"
+          style={project.cardImage ? { background: 'rgba(0,0,0,0.38)' } : undefined}
         />
-        <div
-          className="proj-card__preview-orb2"
-          style={{
-            background: `radial-gradient(circle, ${project.color}20 0%, transparent 70%)`,
-          }}
-        />
+        {!project.cardImage && <div className="proj-card__preview-grid" />}
+        {!project.cardImage && (
+          <div
+            className="proj-card__preview-orb"
+            style={{ background: `radial-gradient(circle, ${project.color}30 0%, transparent 70%)` }}
+          />
+        )}
+        {!project.cardImage && (
+          <div
+            className="proj-card__preview-orb2"
+            style={{ background: `radial-gradient(circle, ${project.color}20 0%, transparent 70%)` }}
+          />
+        )}
         <span
           className="proj-card__preview-label"
           style={{
-            color: project.color,
-            borderColor: `${project.color}50`,
-            backgroundColor: `${project.color}12`,
+            color: project.cardImage ? '#fff' : project.color,
+            borderColor: project.cardImage ? 'rgba(255,255,255,0.4)' : `${project.color}50`,
+            backgroundColor: project.cardImage ? 'rgba(0,0,0,0.45)' : `${project.color}12`,
           }}
         >
           {previewLabel}

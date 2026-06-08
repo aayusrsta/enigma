@@ -15,6 +15,7 @@ export interface Project {
   inProgress?: boolean
   color: string
   previewType: 'web' | 'mobile' | 'internal' | 'wip'
+  cardImage?: string
   previewUrl?: string
   screenshots?: string[]
   appLinks?: AppLinks
@@ -31,6 +32,7 @@ export const professionalProjects: Project[] = [
     tags: ['REACT NATIVE', 'REDUX', 'FIREBASE', 'DEEP LINKING'],
     url: 'https://www.ncell.com.np/en/individual/ncellapp',
     color: '#0ea5e9',
+    cardImage: '/projects/ncell.png',
     previewType: 'mobile',
     screenshots: [
       'https://webapi.ncell.com.np/upload/Others/ncellapp_download.png',
@@ -73,6 +75,7 @@ export const professionalProjects: Project[] = [
     tags: ['HTML', 'CSS', 'JAVASCRIPT', 'DATA VIZ'],
     url: 'https://nepalindata.com',
     color: '#10b981',
+    cardImage: '/projects/nid.jpg',
     previewType: 'internal',
     appLinks: { web: 'https://nepalindata.com' },
     year: '2023–2024',
@@ -124,6 +127,7 @@ export const personalProjects: Project[] = [
     tags: ['REACT', 'NODE.JS', 'PRISMA', 'NEON POSTGRES', 'VERCEL'],
     url: 'https://sp-web-iota.vercel.app',
     color: '#2563eb',
+    cardImage: '/projects/sports.png',
     previewType: 'web',
     previewUrl: 'https://sp-web-iota.vercel.app',
     appLinks: {
