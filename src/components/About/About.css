@@ -63,27 +63,13 @@
   letter-spacing: 0.02em;
 }
 
-/* ── Digital signature — S. overlaps Aayu ───────────── */
-.about-sig {
-  display: inline-flex;
-  align-items: flex-end;
-  line-height: 1;
-}
-.about-sig__first {
+/* ── Digital signature ───────────────────────────────── */
+.about-sig { display: inline-block; line-height: 1; }
+.about-sig__text {
   font-family: var(--sig);
-  font-size: 2.8rem; font-weight: 400;
-  color: rgba(255,255,255,0.85);
-  letter-spacing: 0.02em;
-  position: relative; z-index: 1;
-}
-.about-sig__last {
-  font-family: var(--sig);
-  font-size: 3.6rem; font-weight: 400;
-  color: rgba(255,255,255,0.65);
-  margin-left: -20px;
-  position: relative;
-  bottom: -6px;
-  z-index: 2;
+  font-size: 3.2rem; font-weight: 400;
+  color: rgba(255,255,255,0.82);
+  letter-spacing: 0.01em;
 }
 
 /* ── Stats grid ──────────────────────────────────────── */
@@ -115,6 +101,5 @@
   .about { padding: 56px 20px; }
   .about-chapter p { font-size: 0.95rem; }
   .stat__num { font-size: 2rem; }
-  .about-sig__first { font-size: 2.6rem; }
-  .about-sig__last  { font-size: 3.4rem; margin-left: -18px; bottom: -6px; }
+  .about-sig__text { font-size: 2.6rem; }
 }

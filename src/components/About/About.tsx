@@ -91,8 +91,7 @@ export default function About() {
           <div className="about-footer">
             <p className="about-thanks">Thanks for stopping by.</p>
             <div className="about-sig">
-              <span className="about-sig__first">Aayu</span>
-              <span className="about-sig__last">S.</span>
+              <span className="about-sig__text">AayuShrestha</span>
             </div>
           </div>
         </motion.div>
