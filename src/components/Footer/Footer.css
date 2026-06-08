@@ -5,7 +5,7 @@
 }
 .footer__item {
   font-family: var(--mono); font-size: 0.52rem;
-  color: #252525; letter-spacing: 0.15em;
+  color: var(--text3); letter-spacing: 0.15em;
 }
 
 @media (max-width: 600px) {

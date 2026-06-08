@@ -16,7 +16,7 @@
 
 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
 .chip {
-  font-size: 0.72rem; color: var(--text2);
+  font-family: var(--sans); font-size: 0.74rem; color: var(--text2); letter-spacing: 0.01em;
   border: 1px solid var(--border); padding: 5px 12px;
   background: var(--bg); cursor: default;
   transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
