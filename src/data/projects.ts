@@ -116,6 +116,22 @@ export const professionalProjects: Project[] = [
 
 export const personalProjects: Project[] = [
   {
+    id: 'sports-platform',
+    num: 'PERSONAL_05',
+    name: 'Sports Prediction Platform',
+    desc: 'Full-stack multi-sport prediction engine built from scratch. Users predict match outcomes, score points, and climb leaderboards across football, F1, UFC, NBA, cricket and more. Features real-time ESPN data sync, competition access control with admin approval, dynamic branding, and a complete admin panel for managing sports, fixtures, participants, and predictions.',
+    tags: ['REACT', 'NODE.JS', 'PRISMA', 'POSTGRES', 'VERCEL'],
+    url: 'https://sp-web-iota.vercel.app',
+    color: '#2563eb',
+    previewType: 'web',
+    previewUrl: 'https://sp-web-iota.vercel.app',
+    appLinks: {
+      web: 'https://sp-web-iota.vercel.app',
+    },
+    year: '2026',
+    role: 'Personal Project — Full Stack',
+  },
+  {
     id: 'love-melodies-studio',
     num: 'PERSONAL_04',
     name: 'Love Melodies Studio',
