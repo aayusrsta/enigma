@@ -149,6 +149,8 @@
 .proj-card__body {
   padding: 22px 24px 26px;
   display: flex; flex-direction: column; flex: 1;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .proj-card__num {
@@ -168,6 +170,10 @@
 .proj-card__desc {
   font-size: 0.775rem; color: var(--text2);
   line-height: 1.75; margin-bottom: 18px; flex: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* Tags */
@@ -175,17 +181,26 @@
 .proj-card__tag {
   font-family: var(--mono); font-size: 0.46rem;
   letter-spacing: 0.08em;
-  padding: 4px 10px;
+  padding: 5px 12px;
   border-radius: 100px;
-  color: rgba(255,255,255,0.35);
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.09);
-  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  /* directional glass border — bright top, dim bottom */
+  border: 1px solid rgba(255,255,255,0.06);
+  border-top-color: rgba(255,255,255,0.22);
+  border-left-color: rgba(255,255,255,0.14);
+  /* inset shimmer highlight */
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), 0 1px 4px rgba(0,0,0,0.25);
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .proj-card:hover .proj-card__tag {
-  color: rgba(255,255,255,0.6);
-  background: rgba(255,255,255,0.07);
-  border-color: rgba(255,255,255,0.14);
+  color: #fff;
+  background: rgba(255,255,255,0.11);
+  border-top-color: rgba(255,255,255,0.32);
+  border-left-color: rgba(255,255,255,0.2);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 2px 8px rgba(0,0,0,0.3);
 }
 
 /* WIP label */

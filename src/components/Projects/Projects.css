@@ -71,20 +71,21 @@
   font-size: 0.52rem; opacity: 0.4; letter-spacing: 0.06em;
 }
 
-/* ── Project Grid — 3 columns for portrait cards ──────── */
+/* ── Project Grid — 3 columns, uniform row height ────── */
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 440px;
   gap: 18px;
 }
 
 @media (max-width: 1100px) {
   .projects { padding: 96px 48px; }
-  .proj-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 440px; gap: 14px; }
 }
 @media (max-width: 700px) {
   .projects { padding: 72px 24px; }
-  .proj-grid { grid-template-columns: 1fr; gap: 12px; }
+  .proj-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 12px; }
   .proj-tab { padding: 8px 18px; font-size: 0.58rem; }
 }
 @media (max-width: 480px) {
