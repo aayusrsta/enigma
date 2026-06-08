@@ -54,8 +54,7 @@ body::before {
 }
 .sec-num {
   font-family: var(--mono); font-size: 0.58rem;
-  color: var(--accent); letter-spacing: 0.2em;
-  text-shadow: 0 0 16px rgba(var(--accent-rgb), 0.5);
+  color: rgba(255,255,255,0.25); letter-spacing: 0.2em;
 }
 .sec-label {
   font-family: var(--mono); font-size: 0.58rem;

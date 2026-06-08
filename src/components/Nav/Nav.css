@@ -2,28 +2,45 @@
   position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   display: flex; justify-content: space-between; align-items: center;
   padding: 0 48px; height: 62px;
-  background: rgba(8, 8, 8, 0.88);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  backdrop-filter: blur(28px) saturate(1.8);
+  -webkit-backdrop-filter: blur(28px) saturate(1.8);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
 }
+
 .nav-logo {
   font-family: var(--mono); font-size: 0.68rem;
   color: var(--text); letter-spacing: 0.18em;
 }
-.nav-logo b { color: var(--accent); text-shadow: 0 0 14px rgba(var(--accent-rgb), 0.7); }
+.nav-logo b { color: var(--accent); }
 
-.nav-links { display: flex; gap: 32px; }
+/* ── Glass pill nav links ───────────────────────────────── */
+.nav-links {
+  display: flex;
+  gap: 2px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid rgba(255,255,255,0.11);
+  border-bottom-color: rgba(255,255,255,0.05);
+  border-radius: 100px;
+  padding: 4px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
+}
+
 .nav-links a {
-  font-family: var(--mono); font-size: 0.58rem;
-  color: var(--text3); letter-spacing: 0.16em; text-transform: uppercase;
-  transition: color 0.2s;
+  font-family: var(--mono); font-size: 0.56rem;
+  color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 7px 18px;
+  border-radius: 100px;
+  transition: color 0.2s, background 0.2s;
 }
 .nav-links a:hover {
-  color: var(--accent);
-  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
+  color: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.09);
 }
 
+/* ── Status ─────────────────────────────────────────────── */
 .nav-status {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--mono); font-size: 0.56rem;
@@ -43,7 +60,7 @@
 
 @media (max-width: 900px) {
   .nav { padding: 0 28px; }
-  .nav-links { gap: 20px; }
+  .nav-links a { padding: 6px 14px; font-size: 0.52rem; }
 }
 @media (max-width: 600px) {
   .nav { padding: 0 20px; }

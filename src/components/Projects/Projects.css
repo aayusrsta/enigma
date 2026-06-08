@@ -1,6 +1,6 @@
-.projects { padding: 96px 48px; }
+.projects { padding: 96px 72px; }
 
-/* ── iOS Glassy Tab Bar — enhanced depth ──────────────── */
+/* ── iOS Glassy Tab Bar ───────────────────────────────── */
 .proj-tabs-wrap {
   display: flex;
   justify-content: center;
@@ -17,15 +17,15 @@
   );
   backdrop-filter: blur(32px) saturate(1.8);
   -webkit-backdrop-filter: blur(32px) saturate(1.8);
-  border: 1px solid rgba(255,255,255,0.13);
-  border-bottom-color: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-bottom-color: rgba(255,255,255,0.05);
   border-radius: 100px;
   padding: 4px;
   gap: 2px;
   box-shadow:
     0 8px 32px rgba(0,0,0,0.5),
-    0 1px 0 rgba(255,255,255,0.08) inset,
-    0 -1px 0 rgba(0,0,0,0.2) inset;
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.15);
 }
 
 .proj-tab {
@@ -38,50 +38,55 @@
   cursor: none;
   font-family: var(--mono);
   font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase;
-  color: rgba(255,255,255,0.35);
+  color: rgba(255,255,255,0.32);
   transition: color 0.25s;
   user-select: none;
 }
-.proj-tab:hover { color: rgba(255,255,255,0.65); }
+.proj-tab:hover { color: rgba(255,255,255,0.62); }
 .proj-tab--active { color: #fff; }
 
-/* Sliding pill — rich glass with highlight */
+/* Sliding pill */
 .proj-tab-pill {
   position: absolute; inset: 0;
   border-radius: 100px;
   background: linear-gradient(
     135deg,
-    rgba(255,255,255,0.16) 0%,
-    rgba(255,255,255,0.08) 100%
+    rgba(255,255,255,0.15) 0%,
+    rgba(255,255,255,0.07) 100%
   );
   backdrop-filter: blur(16px) saturate(2);
   -webkit-backdrop-filter: blur(16px) saturate(2);
   box-shadow:
-    0 2px 8px rgba(0,0,0,0.5),
-    0 1px 0 rgba(255,255,255,0.2) inset,
-    0 -1px 0 rgba(0,0,0,0.15) inset;
-  border: 1px solid rgba(255,255,255,0.15);
+    0 2px 10px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-top-color: rgba(255,255,255,0.28);
   z-index: 0;
 }
 
 .proj-tab-label { position: relative; z-index: 1; }
 .proj-tab-count {
   position: relative; z-index: 1;
-  font-size: 0.52rem; opacity: 0.45; letter-spacing: 0.06em;
+  font-size: 0.52rem; opacity: 0.4; letter-spacing: 0.06em;
 }
 
-/* ── Glassy Project Grid ──────────────────────────────── */
+/* ── Project Grid — 3 columns for portrait cards ──────── */
 .proj-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
 }
 
-@media (max-width: 900px) {
-  .projects { padding: 72px 28px; }
-  .proj-grid { grid-template-columns: 1fr; gap: 12px; }
+@media (max-width: 1100px) {
+  .projects { padding: 96px 48px; }
+  .proj-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
 }
-@media (max-width: 600px) {
-  .projects { padding: 56px 20px; gap: 10px; }
+@media (max-width: 700px) {
+  .projects { padding: 72px 24px; }
+  .proj-grid { grid-template-columns: 1fr; gap: 12px; }
   .proj-tab { padding: 8px 18px; font-size: 0.58rem; }
+}
+@media (max-width: 480px) {
+  .projects { padding: 56px 16px; }
 }
