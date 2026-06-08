@@ -10,6 +10,51 @@ const stats = [
   { num: 'OPEN', suffix: '', label: 'To new roles',   accent: true  },
 ]
 
+const chapters = [
+  {
+    label: 'Where I\'m from',
+    text: (
+      <>
+        A curious kid from Kathmandu who couldn&apos;t stop asking{' '}
+        <em>why does this work?</em> That one question rewired everything.
+        I taught myself to code, broke things on purpose, and never really stopped.
+      </>
+    ),
+  },
+  {
+    label: 'The craft',
+    text: (
+      <>
+        Three years building things people actually use. <strong>React,
+        React Native, Next.js</strong> — the tools I reach for when something
+        needs to be built right and built to last. Two companies, six shipped
+        products, a lot of late nights that were worth it.
+      </>
+    ),
+  },
+  {
+    label: 'Right now',
+    text: (
+      <>
+        At <span className="about-text__accent">Amnil Technologies</span> I
+        engineer the Ncell App — Nepal&apos;s largest telecom application, used
+        by millions every single day. The challenge isn&apos;t writing code.
+        It&apos;s hiding all the complexity so the experience feels effortless.
+      </>
+    ),
+  },
+  {
+    label: 'What I believe in',
+    text: (
+      <>
+        Speed that doesn&apos;t feel fast. Design that doesn&apos;t look designed.{' '}
+        <strong>Code that the next engineer won&apos;t dread reading at midnight.</strong>{' '}
+        Good software should feel inevitable — like it couldn&apos;t have been any other way.
+      </>
+    ),
+  },
+]
+
 const fadeLeft  = { hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: 'easeOut' as const } } }
 const fadeRight = { hidden: { opacity: 0, x:  20 }, visible: { opacity: 1, x: 0, transition: { duration: 0.65, ease: 'easeOut' as const } } }
 const stagger   = { hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }
@@ -36,45 +81,19 @@ export default function About() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          <div className="about-chapter">
-            <span className="about-chapter__num">I.</span>
-            <p>
-              Started as a curious kid in Kathmandu who couldn&apos;t stop asking{' '}
-              <em>why does this work?</em> That one question rewired everything.
-            </p>
-          </div>
+          {chapters.map(ch => (
+            <div key={ch.label} className="about-chapter">
+              <span className="about-chapter__label">{ch.label}</span>
+              <p>{ch.text}</p>
+            </div>
+          ))}
 
-          <div className="about-chapter">
-            <span className="about-chapter__num">II.</span>
-            <p>
-              Three years. Two companies. Six products shipped to real people.{' '}
-              <strong>React, React Native, Next.js</strong> — the tools I reach for when
-              something needs to be built right and built to last.
-            </p>
-          </div>
-
-          <div className="about-chapter">
-            <span className="about-chapter__num">III.</span>
-            <p>
-              At <span className="about-text__accent">Amnil Technologies</span>, I engineer
-              the Ncell App — Nepal&apos;s largest telecom application, used by millions every
-              day. Complexity hidden behind interfaces that just <em>work</em>.
-            </p>
-          </div>
-
-          <div className="about-chapter">
-            <span className="about-chapter__num">IV.</span>
-            <p>
-              Speed that doesn&apos;t feel fast. Design that doesn&apos;t look designed.{' '}
-              <strong>Code that the next engineer won&apos;t dread reading at midnight.</strong>
-            </p>
-          </div>
-
-          <p className="about-thanks">Thanks for stopping by.</p>
-
-          <div className="about-sig">
-            <span className="about-sig__first">Aayu</span>
-            <span className="about-sig__last">S.</span>
+          <div className="about-footer">
+            <p className="about-thanks">Thanks for stopping by.</p>
+            <div className="about-sig">
+              <span className="about-sig__first">Aayu</span>
+              <span className="about-sig__last">S.</span>
+            </div>
           </div>
         </motion.div>
 
