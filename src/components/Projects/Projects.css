@@ -1,11 +1,51 @@
 .projects { padding: 96px 72px; }
 
-/* ── iOS Glassy Tab Bar ───────────────────────────────── */
+/* ── Header row: tabs + expand toggle ────────────────── */
+.proj-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+}
+
 .proj-tabs-wrap {
   display: flex;
   justify-content: center;
-  margin-bottom: 56px;
 }
+
+/* ── Expand / Carousel toggle button ─────────────────── */
+.proj-expand-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--mono);
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-top-color: rgba(255,255,255,0.2);
+  border-radius: 100px;
+  padding: 9px 20px;
+  cursor: none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), 0 4px 16px rgba(0,0,0,0.25);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.proj-expand-btn:hover,
+.proj-expand-btn--active {
+  background: rgba(255,255,255,0.11);
+  color: #fff;
+  border-top-color: rgba(255,255,255,0.32);
+}
+
+/* ── iOS Glassy Tab Bar ───────────────────────────────── */
 
 .proj-tabs {
   display: flex;
@@ -88,6 +128,9 @@
   .proj-grid { grid-template-columns: 1fr; grid-auto-rows: auto; gap: 12px; }
   .proj-tab { padding: 8px 18px; font-size: 0.58rem; }
   .proj-tabs { flex-wrap: wrap; border-radius: 16px; }
+  .proj-header { gap: 14px; margin-bottom: 40px; }
+  /* On mobile always show grid — carousel is desktop only */
+  .proj-expand-btn { display: none; }
 }
 @media (max-width: 480px) {
   .projects { padding: 56px 16px; }
