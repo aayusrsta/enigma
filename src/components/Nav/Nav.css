@@ -80,11 +80,16 @@
   50% { opacity: 0.2; }
 }
 
-@media (max-width: 900px) {
-  .nav { padding: 0 28px; }
-  .nav-links a { padding: 6px 14px; font-size: 0.56rem; }
+@media (max-width: 1024px) {
+  .nav { padding: 0 32px; }
+  .nav-links a { padding: 7px 16px; font-size: 0.58rem; }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .nav { padding: 0 24px; }
+  .nav-links a { padding: 6px 12px; font-size: 0.55rem; }
+  .nav-logo { font-size: 0.63rem; }
+}
+@media (max-width: 480px) {
   .nav { padding: 0 20px; }
   .nav-links { display: none; }
   .nav-logo { font-size: 0.6rem; }

@@ -208,9 +208,17 @@
 .proj-card--wip .proj-card__name { color: #777; }
 
 /* Responsive */
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .proj-card { border-radius: 14px; height: auto; }
-  .proj-card__preview { height: 160px; border-radius: 12px 12px 0 0; }
+  .proj-card__preview { height: 180px; border-radius: 12px 12px 0 0; }
   .proj-card__body { padding: 18px 20px 22px; }
+  .proj-card__name { font-size: 1.05rem; }
+}
+@media (max-width: 480px) {
+  .proj-card { border-radius: 12px; }
+  .proj-card__preview { height: 160px; border-radius: 10px 10px 0 0; }
+  .proj-card__body { padding: 16px 18px 20px; }
   .proj-card__name { font-size: 1rem; }
+  .proj-card__tags { gap: 4px; }
+  .proj-card__tag { padding: 4px 10px; }
 }

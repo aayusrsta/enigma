@@ -69,12 +69,17 @@ body::before {
   color: var(--text4); letter-spacing: 0.15em;
 }
 
-@media (max-width: 900px) {
-  .section { padding: 72px 28px; }
-  .sec-head { margin-bottom: 40px; }
+@media (max-width: 1024px) {
+  .section { padding: 80px 40px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .section { padding: 72px 32px; }
+  .sec-head { margin-bottom: 40px; }
+  .sec-title { font-size: 1.8rem; }
+}
+@media (max-width: 480px) {
   .section { padding: 56px 20px; }
   .sec-head { gap: 10px; }
+  .sec-title { font-size: 1.5rem; }
   .sec-label { display: none; }
 }

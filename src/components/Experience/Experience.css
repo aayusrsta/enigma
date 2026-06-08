@@ -43,13 +43,19 @@
   border: 1px solid rgba(255,255,255,0.1); padding: 3px 8px;
 }
 
-@media (max-width: 900px) {
-  .experience { padding: 72px 28px; }
+@media (max-width: 1024px) {
+  .experience { padding: 80px 40px; }
+  .exp-row { grid-template-columns: 160px 1fr auto; gap: 24px; }
+}
+@media (max-width: 768px) {
+  .experience { padding: 72px 32px; }
   .exp-row { grid-template-columns: 140px 1fr; gap: 20px; }
   .exp-tags { display: none; }
+  .exp-bullets li { font-size: 0.82rem; }
 }
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .experience { padding: 56px 20px; }
-  .exp-row { grid-template-columns: 1fr; gap: 10px; }
+  .exp-row { grid-template-columns: 1fr; gap: 10px; padding: 28px 0; }
   .exp-period { font-size: 0.52rem; }
+  .exp-bullets li { font-size: 0.78rem; }
 }

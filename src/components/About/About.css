@@ -92,14 +92,20 @@
   color: var(--text4); letter-spacing: 0.15em; text-transform: uppercase;
 }
 
-@media (max-width: 900px) {
-  .about { padding: 72px 28px; }
+@media (max-width: 1024px) {
+  .about { padding: 80px 40px; }
+  .about-grid { gap: 48px; }
+}
+@media (max-width: 768px) {
+  .about { padding: 72px 32px; }
   .about-grid { grid-template-columns: 1fr; gap: 40px; }
   .about-stats { position: static; }
+  .stat { padding: 26px 22px; }
 }
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .about { padding: 56px 20px; }
-  .about-chapter p { font-size: 0.95rem; }
+  .about-chapter p { font-size: 0.9rem; }
   .stat__num { font-size: 2rem; }
-  .about-sig__text { font-size: 2.6rem; }
+  .stat { padding: 22px 18px; }
+  .about-sig__text { font-size: 2.4rem; }
 }
