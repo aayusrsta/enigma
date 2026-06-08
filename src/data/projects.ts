@@ -89,13 +89,9 @@ export const professionalProjects: Project[] = [
     tags: ['REACT NATIVE', 'REDUX', 'NODE.JS'],
     url: 'https://play.google.com/store/apps/details?id=com.giblintranet&pli=1',
     color: '#f59e0b',
+    cardImage: '/projects/global-chautari.webp',
     previewType: 'mobile',
-    screenshots: [
-      'https://play-lh.googleusercontent.com/Eb2rPEMd692XA0-uD_u7WF1BCb5fESgtPeuQ3_HKgyxKUNLeRuz44Uw3X3S6lMpfi6KbH3eTdQtLaZirq3-0l7Y=w526-h296-rw',
-      'https://play-lh.googleusercontent.com/pzB4B1n4dCV6WwKo404uGvznfqssipUoLDrY7PlYYOW4gDKvt4TLl24Q7ploDXKTV_kRySfKqDvdHkiBrJtven8=w526-h296-rw',
-      'https://play-lh.googleusercontent.com/cKZdJy98SAfM8rYvY_oQVXLLCFIpULOJAuRRqUjGLhk1mDA3oJElxIxao1n2fuKD3M1aiclB_7ivDKMyD1q6vQ=w526-h296-rw',
-      'https://play-lh.googleusercontent.com/P3bisHGyZdI4xkI6jbdGx1S1wiUcM6oGMb8ZbHpN3D50vHk_jM6xRHKvJGilwcmjRfyhSprxl0qSF8R2JSHilw=w526-h296-rw',
-    ],
+    screenshots: ['/projects/global-chautari.webp'],
     appLinks: {
       android: 'https://play.google.com/store/apps/details?id=com.giblintranet&pli=1',
       ios: 'https://apps.apple.com/lb/app/global-chautari/id6742215910',
