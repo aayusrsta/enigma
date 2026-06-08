@@ -4,9 +4,9 @@ import { motion } from 'framer-motion'
 import './About.css'
 
 const stats = [
-  { num: '2', suffix: '+', label: 'Years experience', accent: false },
-  { num: '4',  suffix: '',  label: 'Live projects',   accent: false },
-  { num: '3',  suffix: '',  label: 'Companies',       accent: false },
+  { num: '3', suffix: '+', label: 'Years experience', accent: false },
+  { num: '6', suffix: '',  label: 'Live projects',    accent: false },
+  { num: '2', suffix: '',  label: 'Companies',        accent: false },
   { num: 'OPEN', suffix: '', label: 'To new roles',   accent: true  },
 ]
 
@@ -29,24 +29,54 @@ export default function About() {
       </motion.div>
 
       <div className="about-grid">
-        <motion.p
+        <motion.div
           className="about-text"
           variants={fadeLeft}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
         >
-          I&apos;m a <strong>Software Engineer based in Kathmandu, Nepal</strong> with 2+ years of
-          experience building and shipping web and mobile applications. I specialise in{' '}
-          <strong>React, React Native</strong>, and <strong>Next.js</strong>.
-          <br /><br />
-          At <span className="about-text__accent">Amnil Technologies</span>, I engineer features
-          for the Ncell App — one of Nepal&apos;s most used mobile applications. Before that, I built
-          full-stack web platforms with real-time systems at Smart Solutions.
-          <br /><br />
-          I care deeply about <strong>clean interfaces, fast performance</strong>, and code that
-          ships and scales.
-        </motion.p>
+          <div className="about-chapter">
+            <span className="about-chapter__num">I.</span>
+            <p>
+              Started as a curious kid in Kathmandu who couldn&apos;t stop asking{' '}
+              <em>why does this work?</em> That one question rewired everything.
+            </p>
+          </div>
+
+          <div className="about-chapter">
+            <span className="about-chapter__num">II.</span>
+            <p>
+              Three years. Two companies. Six products shipped to real people.{' '}
+              <strong>React, React Native, Next.js</strong> — the tools I reach for when
+              something needs to be built right and built to last.
+            </p>
+          </div>
+
+          <div className="about-chapter">
+            <span className="about-chapter__num">III.</span>
+            <p>
+              At <span className="about-text__accent">Amnil Technologies</span>, I engineer
+              the Ncell App — Nepal&apos;s largest telecom application, used by millions every
+              day. Complexity hidden behind interfaces that just <em>work</em>.
+            </p>
+          </div>
+
+          <div className="about-chapter">
+            <span className="about-chapter__num">IV.</span>
+            <p>
+              Speed that doesn&apos;t feel fast. Design that doesn&apos;t look designed.{' '}
+              <strong>Code that the next engineer won&apos;t dread reading at midnight.</strong>
+            </p>
+          </div>
+
+          <p className="about-thanks">Thanks for stopping by.</p>
+
+          <div className="about-sig">
+            <span className="about-sig__first">Aayu</span>
+            <span className="about-sig__last">S.</span>
+          </div>
+        </motion.div>
 
         <motion.div
           className="about-stats"

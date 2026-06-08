@@ -3,20 +3,75 @@
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 72px; align-items: center;
+  gap: 72px; align-items: start;
 }
 
+/* ── Chapter body text ───────────────────────────────── */
 .about-text {
-  font-family: var(--sans); font-size: 1.05rem; color: var(--text2);
-  line-height: 1.88; font-weight: 300;
+  font-family: var(--sans); font-size: 1.0rem; color: var(--text2);
+  line-height: 1.9; font-weight: 300;
+  display: flex; flex-direction: column; gap: 20px;
 }
-.about-text strong { color: var(--text); font-weight: 700; }
+.about-text strong { color: var(--text); font-weight: 600; }
+.about-text em { color: rgba(255,255,255,0.82); font-style: italic; font-weight: 400; }
+
 .about-text__accent {
   color: #fff;
   font-style: italic;
   font-weight: 600;
 }
 
+/* ── Chapter blocks ──────────────────────────────────── */
+.about-chapter {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.about-chapter__num {
+  font-family: var(--brush);
+  font-size: 1.5rem; font-weight: 600;
+  color: rgba(255,255,255,0.22);
+  flex-shrink: 0;
+  line-height: 1.55;
+  width: 26px;
+}
+
+/* ── Sign-off ────────────────────────────────────────── */
+.about-thanks {
+  font-family: var(--sans);
+  font-size: 0.88rem; font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.02em;
+  margin-top: 6px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+}
+
+/* ── Digital signature — S. overlaps Aayu ───────────── */
+.about-sig {
+  display: inline-flex;
+  align-items: flex-end;
+  line-height: 1;
+  margin-top: 2px;
+}
+.about-sig__first {
+  font-family: var(--brush);
+  font-size: 2.6rem; font-weight: 600;
+  color: rgba(255,255,255,0.8);
+  letter-spacing: -0.01em;
+  position: relative; z-index: 1;
+}
+.about-sig__last {
+  font-family: var(--brush);
+  font-size: 3.4rem; font-weight: 700;
+  color: rgba(255,255,255,0.65);
+  margin-left: -18px;   /* S. overlaps into Aayu */
+  position: relative;
+  bottom: -5px;         /* dips below baseline for organic signature feel */
+  z-index: 2;
+}
+
+/* ── Stats grid ──────────────────────────────────────── */
 .about-stats {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 1px; background: var(--border);
@@ -42,4 +97,6 @@
   .about { padding: 56px 20px; }
   .about-text { font-size: 0.95rem; }
   .stat__num { font-size: 2rem; }
+  .about-sig__first { font-size: 2.2rem; }
+  .about-sig__last  { font-size: 2.8rem; margin-left: -14px; }
 }
