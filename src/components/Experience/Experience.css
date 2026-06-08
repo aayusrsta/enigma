@@ -21,13 +21,12 @@
 
 .exp-period {
   font-family: var(--mono); font-size: 0.58rem;
-  color: var(--text4); letter-spacing: 0.1em; padding-top: 3px;
+  color: var(--text3); letter-spacing: 0.1em; padding-top: 3px;
 }
 .exp-role  { font-family: var(--sans); font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 3px; }
 .exp-company {
   font-family: var(--mono); font-size: 0.58rem;
   color: var(--accent); letter-spacing: 0.09em; margin-bottom: 14px;
-  text-shadow: 0 0 10px rgba(var(--accent-rgb), 0.35);
 }
 .exp-bullets { list-style: none; }
 .exp-bullets li {
@@ -41,7 +40,7 @@
 .exp-tag {
   font-family: var(--mono); font-size: 0.48rem;
   color: var(--text3); letter-spacing: 0.1em;
-  border: 1px solid #161616; padding: 3px 8px;
+  border: 1px solid rgba(255,255,255,0.1); padding: 3px 8px;
 }
 
 @media (max-width: 900px) {

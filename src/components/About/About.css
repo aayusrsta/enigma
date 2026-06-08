@@ -12,8 +12,9 @@
 }
 .about-text strong { color: var(--text); font-weight: 700; }
 .about-text__accent {
-  color: var(--accent);
-  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
+  color: #fff;
+  font-style: italic;
+  font-weight: 600;
 }
 
 .about-stats {
@@ -26,11 +27,8 @@
   line-height: 1; letter-spacing: -0.04em;
   color: var(--text); margin-bottom: 6px;
 }
-.stat__num b { color: var(--accent); text-shadow: 0 0 18px rgba(var(--accent-rgb), 0.6); }
-.stat__num--accent {
-  color: var(--accent); font-size: 1.5rem;
-  text-shadow: 0 0 20px rgba(var(--accent-rgb), 0.5);
-}
+.stat__num b { color: #fff; }
+.stat__num--accent { color: var(--accent); font-size: 1.5rem; }
 .stat__label {
   font-family: var(--mono); font-size: 0.54rem;
   color: var(--text4); letter-spacing: 0.15em; text-transform: uppercase;

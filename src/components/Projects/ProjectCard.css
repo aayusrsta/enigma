@@ -1,6 +1,7 @@
 /* ── Glassy card wrapper ──────────────────────────────── */
 .proj-card {
   position: relative;
+  height: 440px;
   overflow: hidden;
   cursor: none;
   display: flex;
@@ -155,7 +156,7 @@
 
 .proj-card__num {
   font-family: var(--mono); font-size: 0.46rem;
-  color: rgba(255,255,255,0.2); letter-spacing: 0.22em;
+  color: rgba(255,255,255,0.38); letter-spacing: 0.22em;
   margin-bottom: 8px;
 }
 
@@ -208,7 +209,7 @@
 
 /* Responsive */
 @media (max-width: 700px) {
-  .proj-card { border-radius: 14px; }
+  .proj-card { border-radius: 14px; height: auto; }
   .proj-card__preview { height: 160px; border-radius: 12px 12px 0 0; }
   .proj-card__body { padding: 18px 20px 22px; }
   .proj-card__name { font-size: 1rem; }
