@@ -2,34 +2,88 @@
 
 .stack-grid {
   display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 1px; background: var(--border);
+  gap: 16px;
 }
-.stack-col { background: var(--s1); padding: 28px; }
+
+/* ── Glassy column card ───────────────────────────────── */
+.stack-col {
+  position: relative;
+  border-radius: 18px;
+  padding: 28px;
+  background: linear-gradient(
+    155deg,
+    rgba(255,255,255,0.06) 0%,
+    rgba(255,255,255,0.025) 60%,
+    rgba(255,255,255,0.04) 100%
+  );
+  backdrop-filter: blur(22px) saturate(1.6);
+  -webkit-backdrop-filter: blur(22px) saturate(1.6);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top-color: rgba(255,255,255,0.18);
+  border-left-color: rgba(255,255,255,0.1);
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    inset 0 1px 0 rgba(255,255,255,0.07);
+  overflow: hidden;
+}
+
+/* shimmer top edge */
+.stack-col::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255,255,255,0.4) 40%,
+    rgba(255,255,255,0.2) 70%,
+    transparent
+  );
+  pointer-events: none;
+}
 
 .stack-col__head {
   font-family: var(--mono); font-size: 0.55rem;
-  color: var(--accent); letter-spacing: 0.2em; text-transform: uppercase;
-  margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
-  text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
+  color: rgba(255,255,255,0.5); letter-spacing: 0.2em; text-transform: uppercase;
+  margin-bottom: 20px; display: flex; align-items: center; gap: 10px;
 }
-.stack-col__head::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.stack-col__head::after {
+  content: ''; flex: 1; height: 1px;
+  background: rgba(255,255,255,0.08);
+}
 
+/* ── Oval glassy chips ────────────────────────────────── */
 .chips { display: flex; flex-wrap: wrap; gap: 7px; }
+
 .chip {
-  font-family: var(--sans); font-size: 0.74rem; color: var(--text2); letter-spacing: 0.01em;
-  border: 1px solid var(--border); padding: 5px 12px;
-  background: var(--bg); cursor: default;
-  transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+  font-family: var(--sans); font-size: 0.72rem;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 0.01em;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-top-color: rgba(255,255,255,0.15);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.07);
+  cursor: default;
+  transition: color 0.2s, background 0.2s, border-color 0.2s, box-shadow 0.2s;
 }
 .chip:hover {
-  color: var(--text); border-color: rgba(var(--accent-rgb), 0.35);
-  box-shadow: 0 0 14px rgba(var(--accent-rgb), 0.1);
-  background: rgba(var(--accent-rgb), 0.04);
+  color: #fff;
+  background: rgba(255,255,255,0.1);
+  border-top-color: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.12);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.14),
+    0 4px 16px rgba(0,0,0,0.3);
 }
 
 @media (max-width: 900px) {
   .stack { padding: 72px 28px; }
-  .stack-grid { grid-template-columns: 1fr; }
+  .stack-grid { grid-template-columns: 1fr; gap: 12px; }
 }
 @media (max-width: 600px) {
   .stack { padding: 56px 20px; }

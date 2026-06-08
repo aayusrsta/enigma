@@ -9,10 +9,6 @@ export default function Hero() {
       <div className="hero-grid" />
       <div className="hero-glow" />
       <div className="hero-scan" />
-      <div className="hero-corner hero-corner--tl" />
-      <div className="hero-corner hero-corner--tr" />
-      <div className="hero-corner hero-corner--bl" />
-      <div className="hero-corner hero-corner--br" />
       <div className="hero-coords">
         LAT 27.7172° N<br />LON 85.3240° E<br />——————<br />KTM_NPL
       </div>

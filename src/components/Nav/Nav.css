@@ -2,7 +2,7 @@
   position: fixed; top: 0; left: 0; right: 0; z-index: 500;
   display: flex; justify-content: space-between; align-items: center;
   padding: 0 48px; height: 62px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+  background: rgba(6, 6, 6, 0.88);
   backdrop-filter: blur(28px) saturate(1.8);
   -webkit-backdrop-filter: blur(28px) saturate(1.8);
   border-bottom: 1px solid rgba(255,255,255,0.08);
@@ -18,33 +18,36 @@
 .nav-links {
   display: flex;
   gap: 2px;
-  background: linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.03) 100%);
+  background: rgba(255,255,255,0.07);
   backdrop-filter: blur(20px) saturate(1.6);
   -webkit-backdrop-filter: blur(20px) saturate(1.6);
-  border: 1px solid rgba(255,255,255,0.11);
-  border-bottom-color: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-bottom-color: rgba(255,255,255,0.07);
+  border-top-color: rgba(255,255,255,0.2);
   border-radius: 100px;
   padding: 4px;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.07);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.5),
+    inset 0 1px 0 rgba(255,255,255,0.1);
 }
 
 .nav-links a {
-  font-family: var(--mono); font-size: 0.56rem;
-  color: rgba(255,255,255,0.4); letter-spacing: 0.14em; text-transform: uppercase;
+  font-family: var(--mono); font-size: 0.57rem;
+  color: rgba(255,255,255,0.62); letter-spacing: 0.14em; text-transform: uppercase;
   padding: 7px 18px;
   border-radius: 100px;
   transition: color 0.2s, background 0.2s;
 }
 .nav-links a:hover {
-  color: rgba(255,255,255,0.9);
-  background: rgba(255,255,255,0.09);
+  color: #fff;
+  background: rgba(255,255,255,0.1);
 }
 
 /* ── Status ─────────────────────────────────────────────── */
 .nav-status {
   display: flex; align-items: center; gap: 8px;
   font-family: var(--mono); font-size: 0.56rem;
-  color: var(--text3); letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.65); letter-spacing: 0.12em;
 }
 .nav-ping {
   width: 5px; height: 5px; border-radius: 50%;
