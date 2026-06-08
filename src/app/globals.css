@@ -8,8 +8,8 @@
   --text2:       #b0b0b0;
   --text3:       #888888;
   --text4:       #666666;
-  --accent:      #5eead4;
-  --accent-rgb:  94, 234, 212;
+  --accent:      #818cf8;
+  --accent-rgb:  129, 140, 248;
   --mono:        var(--font-mono), 'Space Mono', monospace;
   --sans:        var(--font-inter), 'Inter', sans-serif;
 }

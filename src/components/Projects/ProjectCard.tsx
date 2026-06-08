@@ -41,14 +41,6 @@ export default function ProjectCard({ project, onClick }: Props) {
         }}
       />
 
-      {/* Corner bracket via inline style on a sibling div */}
-      <div
-        style={{
-          position: 'absolute', inset: 0, pointerEvents: 'none',
-          borderTop: '0px solid transparent',
-          borderRight: '0px solid transparent',
-        }}
-      />
 
       {/* Preview strip */}
       <div className="proj-card__preview">
@@ -57,15 +49,21 @@ export default function ProjectCard({ project, onClick }: Props) {
         <div
           className="proj-card__preview-orb"
           style={{
-            background: `radial-gradient(circle, ${project.color}22 0%, transparent 70%)`,
+            background: `radial-gradient(circle, ${project.color}30 0%, transparent 70%)`,
+          }}
+        />
+        <div
+          className="proj-card__preview-orb2"
+          style={{
+            background: `radial-gradient(circle, ${project.color}20 0%, transparent 70%)`,
           }}
         />
         <span
           className="proj-card__preview-label"
           style={{
             color: project.color,
-            background: `${project.color}11`,
-            border: `1px solid ${project.color}33`,
+            borderColor: `${project.color}50`,
+            backgroundColor: `${project.color}12`,
           }}
         >
           {previewLabel}
