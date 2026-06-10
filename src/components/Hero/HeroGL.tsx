@@ -74,9 +74,9 @@ const FRAG = /* glsl */ `
     vec3 col = mix(deep, mid,  smoothstep(0.0, 0.5, t));
         col  = mix(col,  peak, smoothstep(0.4, 1.0, t));
 
-    // Bright rim on the bottom edge — becomes the glowing curved horizon line on scroll
-    float edgeGlow = 1.0 - smoothstep(0.0, 0.018, vUv.y);
-    col = mix(col, vec3(0.65, 0.65, 0.75), edgeGlow * 0.9);
+    // Glowing rim on bottom edge — sweeps in as horizon arc when plane tilts on scroll
+    float edgeGlow = 1.0 - smoothstep(0.0, 0.05, vUv.y);
+    col = mix(col, vec3(1.1, 1.1, 1.35), edgeGlow);  // >1.0 forces strong bloom
 
     gl_FragColor = vec4(col, 1.0);
   }
@@ -199,9 +199,9 @@ export default function HeroGL({ onReady }: Props) {
         // Mouse strength lerp
         uniforms.uMouseStr.value += (targetStr * amp * 1.1 - uniforms.uMouseStr.value) * 0.06
 
-        // Scroll: tilt + drop so the curved bottom edge sweeps into view
-        mesh.rotation.x = scrollRatio * 0.65
-        mesh.position.y = -scrollRatio * 0.7
+        // Negative rotation → bottom edge tilts TOWARD camera → sweeps into viewport
+        mesh.rotation.x = -scrollRatio * 0.72
+        mesh.position.y  =  scrollRatio * 0.55   // shift up so bottom edge stays in frame
 
         composer.render()
       }
