@@ -4,9 +4,8 @@ import './HeroGL.css'
 
 interface Props { onReady?: () => void }
 
-const COUNT   = 180
-const SPEED   = 0.00045
-const CONNECT = 1.8   // world-unit distance to draw a line
+const COUNT = 55
+const SPEED = 0.00028
 
 export default function HeroGL({ onReady }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
@@ -50,29 +49,13 @@ export default function HeroGL({ onReady }: Props) {
       pGeo.setAttribute('position', pAttr)
 
       const pMat = new THREE.PointsMaterial({
-        size: 0.06,
-        color: 0xbbbbdd,
+        size: 0.045,
+        color: 0xaaaacc,
         sizeAttenuation: true,
         transparent: true,
-        opacity: 0.85,
+        opacity: 0.55,
       })
       scene.add(new THREE.Points(pGeo, pMat))
-
-      /* ── Connection lines (LineSegments updated each frame) ── */
-      const maxLines = COUNT * COUNT
-      const linePos  = new Float32Array(maxLines * 6)
-      const lGeo = new THREE.BufferGeometry()
-      const lAttr = new THREE.BufferAttribute(linePos, 3)
-      lAttr.setUsage(THREE.DynamicDrawUsage)
-      lGeo.setAttribute('position', lAttr)
-
-      const lMat = new THREE.LineBasicMaterial({
-        color: 0x8888aa,
-        transparent: true,
-        opacity: 0.25,
-      })
-      const lines = new THREE.LineSegments(lGeo, lMat)
-      scene.add(lines)
 
       /* ── Mouse ────────────────────────────────────────────── */
       const mouse = { x: 0, y: 0 }
@@ -105,25 +88,6 @@ export default function HeroGL({ onReady }: Props) {
           if (pos[i*3+1] < -3) pos[i*3+1] =  3
         }
         pAttr.needsUpdate = true
-
-        // Connection lines
-        let lineIdx = 0
-        for (let a = 0; a < COUNT; a++) {
-          for (let b = a + 1; b < COUNT; b++) {
-            const dx = pos[a*3] - pos[b*3]
-            const dy = pos[a*3+1] - pos[b*3+1]
-            if (dx*dx + dy*dy < CONNECT * CONNECT) {
-              linePos[lineIdx++] = pos[a*3]
-              linePos[lineIdx++] = pos[a*3+1]
-              linePos[lineIdx++] = pos[a*3+2]
-              linePos[lineIdx++] = pos[b*3]
-              linePos[lineIdx++] = pos[b*3+1]
-              linePos[lineIdx++] = pos[b*3+2]
-            }
-          }
-        }
-        lGeo.setDrawRange(0, lineIdx / 3)
-        lAttr.needsUpdate = true
 
         // Camera parallax + scroll fade-up
         camera.position.x += (mouse.x * 0.8 - camera.position.x) * 0.04
