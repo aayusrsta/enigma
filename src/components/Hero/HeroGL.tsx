@@ -128,7 +128,8 @@ export default function HeroGL({ onReady }: Props) {
       /* ── Geometry + material ───────────────────────────────── */
       const isMobile = W < 768
       const segs = isMobile ? [50, 30] : [110, 65]
-      const geo  = new THREE.PlaneGeometry(7.5, 5, segs[0], segs[1])
+      // Oversized plane so edges never appear even when tilted on scroll
+      const geo  = new THREE.PlaneGeometry(14, 10, segs[0], segs[1])
 
       const uniforms = {
         uTime:        { value: 0 },
@@ -194,9 +195,9 @@ export default function HeroGL({ onReady }: Props) {
         // Mouse strength lerp
         uniforms.uMouseStr.value += (targetStr * amp * 1.1 - uniforms.uMouseStr.value) * 0.06
 
-        // Scroll: tilt mesh back on Y axis
-        mesh.rotation.x = scrollRatio * 0.5
-        mesh.position.y = -scrollRatio * 0.4
+        // Scroll: very subtle tilt — no edge visible since plane is oversized
+        mesh.rotation.x = scrollRatio * 0.18
+        mesh.position.z = -scrollRatio * 0.3
 
         composer.render()
       }
