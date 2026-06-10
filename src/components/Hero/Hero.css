@@ -14,7 +14,13 @@
   -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 70%, black 20%, transparent 80%);
   mask-image: radial-gradient(ellipse 90% 90% at 50% 70%, black 20%, transparent 80%);
   opacity: 0.5;
+  transition: opacity 1.2s ease;
 }
+/* Once WebGL canvas is live, dissolve the CSS grid */
+.hero--gl .hero-grid { opacity: 0; }
+
+/* Restore mouse events on GL canvas so the ripple works */
+.hero--gl .hero-gl { pointer-events: all; }
 
 .hero-glow {
   position: absolute; inset: 0; pointer-events: none;

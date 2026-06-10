@@ -1,14 +1,25 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { motion } from 'framer-motion'
+import dynamic from 'next/dynamic'
 import './Hero.css'
 
+/* Load Three.js hero GL only client-side — avoids SSR canvas issues */
+const HeroGL = dynamic(() => import('./HeroGL'), { ssr: false })
+
 export default function Hero() {
+  const [glReady, setGlReady] = useState(false)
+
   return (
-    <section className="hero">
+    <section className={`hero${glReady ? ' hero--gl' : ''}`}>
+      {/* WebGL wave surface — sits below everything */}
+      <HeroGL onReady={() => setGlReady(true)} />
+
+      {/* CSS grid fades out once WebGL is up */}
       <div className="hero-grid" />
       <div className="hero-glow" />
       <div className="hero-scan" />
+
       <div className="hero-coords">
         LAT 27.7172° N<br />LON 85.3240° E<br />——————<br />KTM_NPL
       </div>
