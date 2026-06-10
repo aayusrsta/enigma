@@ -1,7 +1,7 @@
 .hero {
   min-height: 100vh;
-  padding: 62px 48px 72px;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 80px 48px 80px;
+  display: flex; flex-direction: column; justify-content: center;
   position: relative; overflow: hidden;
 }
 
@@ -44,7 +44,7 @@
 
 
 .hero-coords {
-  position: absolute; bottom: 72px; right: 48px;
+  position: absolute; bottom: 80px; right: 48px;
   font-family: var(--mono); font-size: 0.5rem;
   color: var(--text4); letter-spacing: 0.1em;
   line-height: 1.9; text-align: right;
@@ -67,7 +67,7 @@
 }
 
 .hero-name {
-  font-size: clamp(5.5rem, 11vw, 9.5rem);
+  font-size: clamp(3.5rem, 12vw, 9.5rem);
   font-weight: 900; line-height: 0.88;
   letter-spacing: -0.04em; color: #fff;
   text-shadow: 0 0 120px rgba(var(--accent-rgb), 0.07);
@@ -166,18 +166,18 @@
 }
 
 @media (max-width: 1024px) {
-  .hero { padding: 62px 36px 64px; }
-  .hero-name { font-size: clamp(4.5rem, 12vw, 8rem); }
-  .hero-coords { right: 36px; bottom: 64px; }
+  .hero { padding: 80px 36px 80px; }
+  .hero-name { font-size: clamp(3.5rem, 12vw, 8rem); }
+  .hero-coords { right: 36px; bottom: 80px; }
 }
 @media (max-width: 768px) {
-  .hero { padding: 62px 28px 56px; }
+  .hero { padding: 72px 28px 72px; }
   .hero-name { font-size: clamp(3.5rem, 12vw, 9.5rem); }
   .hero-body { max-width: 100%; }
-  .hero-coords { right: 28px; bottom: 56px; }
+  .hero-coords { right: 28px; bottom: 72px; }
 }
 @media (max-width: 480px) {
-  .hero { padding: 62px 20px 48px; }
+  .hero { padding: 56px 20px 56px; }
   .hero-name { font-size: clamp(3.5rem, 15vw, 5rem); }
   .hero-eyebrow { font-size: 0.55rem; }
   .hero-desc { font-size: 0.72rem; }

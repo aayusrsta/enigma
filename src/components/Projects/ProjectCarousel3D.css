@@ -111,8 +111,12 @@
 }
 
 @media (max-width: 768px) {
-  .csl3d-wrapper { height: 540px; }
+  .csl3d-wrapper { height: 500px; }
   .csl3d-vignette { width: 80px; }
   .csl-arrow--left  { left: 8px; }
   .csl-arrow--right { right: 8px; }
+}
+@media (max-width: 480px) {
+  .csl3d-wrapper { height: 440px; }
+  .csl3d-vignette { width: 48px; }
 }
