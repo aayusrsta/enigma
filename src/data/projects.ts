@@ -116,6 +116,21 @@ export const professionalProjects: Project[] = [
 
 export const personalProjects: Project[] = [
   {
+    id: 'guffgaaf',
+    num: 'PERSONAL_06',
+    name: 'GuffGaaf',
+    desc: 'Full-stack social media platform built from scratch. Stories with 24h expiry, real-time DMs with Socket.io, post reactions, follow system, notifications, and OTP email verification. Features a glassmorphism UI with dark/light mode, story replies that land in DMs, and live typing indicators.',
+    tags: ['REACT', 'NODE.JS', 'SOCKET.IO', 'PRISMA', 'POSTGRESQL', 'RENDER'],
+    url: 'https://aayu.com.np/guffgaaf',
+    color: '#a855f7',
+    cardImage: '/projects/guffgaaf.png',
+    previewType: 'web',
+    previewUrl: 'https://aayu.com.np/guffgaaf',
+    appLinks: { web: 'https://aayu.com.np/guffgaaf' },
+    year: '2026',
+    role: 'Personal Project — Full Stack',
+  },
+  {
     id: 'sports-platform',
     num: 'PERSONAL_05',
     name: 'Sports Prediction Platform',
