@@ -5,6 +5,13 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# Collective Finance runs on Vercel; Netlify serves it under this path.
+[[redirects]]
+  from   = "/finance-management/*"
+  to     = "https://collective-finance-web.vercel.app/finance-management/:splat"
+  status = 200
+  force  = true
+
 [[redirects]]
   from   = "/guffgaaf/*"
   to     = "/guffgaaf/index.html"
