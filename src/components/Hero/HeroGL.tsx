@@ -14,9 +14,13 @@ export default function HeroGL({ onReady }: Props) {
     const canvas = canvasRef.current
     if (!canvas) return
     let raf: number
+    let cancelled = false
+    let cleanup = () => {}
 
     // Use plain import() — no async/await wrapper that can silently eat errors
     import('three').then((THREE) => {
+      // Unmounted (or re-run by Strict Mode) before three loaded: don't start a second renderer.
+      if (cancelled) return
       const W = window.innerWidth
       const H = window.innerHeight
 
@@ -107,9 +111,21 @@ export default function HeroGL({ onReady }: Props) {
       }
       window.addEventListener('resize', onResize)
 
+      cleanup = () => {
+        window.removeEventListener('mousemove', onMove)
+        window.removeEventListener('scroll', onScroll)
+        window.removeEventListener('resize', onResize)
+        pGeo.dispose()
+        pMat.dispose()
+        renderer.dispose()
+      }
     }).catch(e => console.error('[HeroGL] Three.js failed:', e))
 
-    return () => cancelAnimationFrame(raf)
+    return () => {
+      cancelled = true
+      cancelAnimationFrame(raf)
+      cleanup()
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 

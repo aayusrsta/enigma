@@ -188,6 +188,22 @@ function InternalPlaceholder({ appLinks, isPrivate = false }: { appLinks?: { web
   )
 }
 
+/** A captured screenshot in browser chrome, for web apps that can't be embedded. */
+function ScreenshotBrowser({ src, url }: { src: string; url?: string }) {
+  return (
+    <div className="modal-browser">
+      <div className="modal-browser-bar">
+        <div className="modal-browser-dot" />
+        <div className="modal-browser-dot" />
+        <div className="modal-browser-dot" />
+        <div className="modal-browser-url"><span>{url ? url.replace(/^https?:\/\//, '') : 'internal'}</span></div>
+      </div>
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt="Screenshot" style={{ width: '100%', flex: 1, objectFit: 'cover', objectPosition: 'top', minHeight: 0 }} />
+    </div>
+  )
+}
+
 function WipPlaceholder() {
   return (
     <div className="modal-placeholder">
@@ -280,15 +296,21 @@ export default function ProjectModal({ project, onClose }: Props) {
             {/* RIGHT: preview */}
             <div className="modal-preview">
               {project.previewType === 'web' && project.previewUrl && (
-                <BrowserPreview url={project.previewUrl} />
+                // aayu.com.np refuses to be framed (X-Frame-Options: DENY), so its own apps show the capture.
+                /aayu\.com\.np/.test(project.previewUrl) && project.screenshots?.[0]
+                  ? <ScreenshotBrowser src={project.screenshots[0]} url={project.previewUrl} />
+                  : <BrowserPreview url={project.previewUrl} />
               )}
               {project.previewType === 'mobile' && project.screenshots && (
                 <MobilePreview screenshots={project.screenshots} color={project.color} />
               )}
-              {project.previewType === 'internal' && (
+              {project.previewType === 'internal' && project.platform === 'web' && project.screenshots?.[0] && (
+                <ScreenshotBrowser src={project.screenshots[0]} url={project.appLinks?.web} />
+              )}
+              {project.previewType === 'internal' && !(project.platform === 'web' && project.screenshots?.[0]) && (
                 <InternalPlaceholder
                   appLinks={project.appLinks}
-                  isPrivate={project.id === 'love-melodies-studio' || project.id === 'interpreter' || project.id === 'pixel-revive'}
+                  isPrivate={!project.appLinks || project.id === 'love-melodies-studio'}
                 />
               )}
               {project.previewType === 'wip' && <WipPlaceholder />}

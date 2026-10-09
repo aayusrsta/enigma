@@ -14,11 +14,12 @@ export const experience: ExperienceItem[] = [
     company: 'Amnil Technologies Pvt. Ltd.',
     location: 'KATHMANDU, NEPAL',
     bullets: [
-      'Developed and maintained Ncell App features with React Native and React',
-      'Built deep linking enabling seamless navigation from external sources into app screens',
-      'Owned full sprint features: Auto Renewal, Product Referral, Resource Exchange, OTP auth, widgets',
+      'Ncell App: deep linking, auto-renewal, product referral, resource exchange, OTP auth and widgets',
+      'Staff apps for Global IME Bank and Machhapuchchhre Bank: chat, leave, biometrics, push and workflows',
+      'Built a drop-in Rocket.Chat SDK for React Native and the Flowzen mobile app and SDK',
+      'Shipped and maintained apps for Nabil Bank, DishHome, ePharmacy, MidTown and FCube Cinemas',
     ],
-    tags: ['REACT NATIVE', 'FIREBASE', 'REDUX'],
+    tags: ['REACT NATIVE', 'TYPESCRIPT', 'FIREBASE', 'REDUX'],
   },
   {
     period: '2023 — 2024',

@@ -137,3 +137,8 @@
   .proj-tab { padding: 7px 14px; font-size: 0.55rem; }
   .proj-tabs-wrap { padding: 0 4px; }
 }
+
+.projects .proj-header { margin: 64px 0 36px; }
+
+/* The 3D ring's side cards reach past the edges; keep them from widening the page. */
+.projects { overflow-x: clip; }

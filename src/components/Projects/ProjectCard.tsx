@@ -13,12 +13,14 @@ export default function ProjectCard({ project, onClick }: Props) {
   const { ref, onMouseMove, onMouseLeave } = use3DTilt()
   const isWip = project.inProgress
 
-  const previewLabel = {
-    web: '↗ WEB APP',
-    mobile: '↗ MOBILE APP',
-    internal: '🔒 INTERNAL',
-    wip: '⚙ IN PROGRESS',
-  }[project.previewType]
+  const isPublic = Boolean(project.appLinks?.web || project.appLinks?.android || project.appLinks?.ios)
+  const previewLabel = isWip
+    ? '⚙ IN PROGRESS'
+    : isPublic
+      ? project.platform === 'mobile' ? '↗ MOBILE APP' : '↗ WEB APP'
+      : '🔒 INTERNAL'
+  // Web apps fall back to their laptop capture; phones to their first screen.
+  const image = project.cardImage ?? project.screenshots?.[0]
 
   return (
     <div
@@ -45,8 +47,8 @@ export default function ProjectCard({ project, onClick }: Props) {
       {/* Preview strip */}
       <div
         className="proj-card__preview"
-        style={project.cardImage ? {
-          backgroundImage: `url(${project.cardImage})`,
+        style={image ? {
+          backgroundImage: `url(${image})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
         } : undefined}
@@ -54,16 +56,20 @@ export default function ProjectCard({ project, onClick }: Props) {
         {/* Overlay — lighter when image present so it stays visible */}
         <div
           className="proj-card__preview-bg"
-          style={project.cardImage ? { background: 'rgba(0,0,0,0.38)' } : undefined}
+          style={image ? { background: 'rgba(0,0,0,0.38)' } : undefined}
         />
-        {!project.cardImage && <div className="proj-card__preview-grid" />}
-        {!project.cardImage && (
+        {!image && <div className="proj-card__preview-grid" />}
+        {!image && project.icon && (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img className="proj-card__preview-icon" src={project.icon} alt="" width={72} height={72} />
+        )}
+        {!image && (
           <div
             className="proj-card__preview-orb"
             style={{ background: `radial-gradient(circle, ${project.color}30 0%, transparent 70%)` }}
           />
         )}
-        {!project.cardImage && (
+        {!image && (
           <div
             className="proj-card__preview-orb2"
             style={{ background: `radial-gradient(circle, ${project.color}20 0%, transparent 70%)` }}
@@ -72,9 +78,9 @@ export default function ProjectCard({ project, onClick }: Props) {
         <span
           className="proj-card__preview-label"
           style={{
-            color: project.cardImage ? '#fff' : project.color,
-            borderColor: project.cardImage ? 'rgba(255,255,255,0.4)' : `${project.color}50`,
-            backgroundColor: project.cardImage ? 'rgba(0,0,0,0.45)' : `${project.color}12`,
+            color: image ? '#fff' : project.color,
+            borderColor: image ? 'rgba(255,255,255,0.4)' : `${project.color}50`,
+            backgroundColor: image ? 'rgba(0,0,0,0.45)' : `${project.color}12`,
           }}
         >
           {previewLabel}

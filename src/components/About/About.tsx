@@ -1,12 +1,13 @@
 'use client'
 import React from 'react'
 import { motion } from 'framer-motion'
+import { mobileProjects, webProjects } from '@/data/projects'
 import './About.css'
 
 const stats = [
   { num: '3', suffix: '+', label: 'Years experience', accent: false },
-  { num: '6', suffix: '',  label: 'Live projects',    accent: false },
-  { num: '2', suffix: '',  label: 'Companies',        accent: false },
+  { num: String(mobileProjects.length), suffix: '', label: 'Mobile apps', accent: false },
+  { num: String(webProjects.length),    suffix: '', label: 'Web apps',    accent: false },
   { num: 'OPEN', suffix: '', label: 'To new roles',   accent: true  },
 ]
 
@@ -27,8 +28,8 @@ const chapters = [
       <>
         Three years building things people actually use. <strong>React,
         React Native, Next.js</strong> — the tools I reach for when something
-        needs to be built right and built to last. Two companies, six shipped
-        products, a lot of late nights that were worth it.
+        needs to be built right and built to last. Two companies, apps for
+        banks, a telecom, cinemas and a pharmacy, and a lot of late nights that were worth it.
       </>
     ),
   },
@@ -37,8 +38,9 @@ const chapters = [
     text: (
       <>
         At <span className="about-text__accent">Amnil Technologies</span> I
-        engineer the Ncell App — Nepal&apos;s largest telecom application, used
-        by millions every single day. The challenge isn&apos;t writing code.
+        build the apps people open every day — the Ncell App, staff apps for
+        Global IME and Machhapuchchhre Bank, and the SDKs that plug chat and
+        workflows into them. The challenge isn&apos;t writing code.
         It&apos;s hiding all the complexity so the experience feels effortless.
       </>
     ),

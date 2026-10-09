@@ -15,19 +15,27 @@ const DECAY    = 0.87
 interface Props {
   projects: Project[]
   onCardClick: (p: Project) => void
+  /** Index to rotate to when it changes from outside (e.g. the device stage). */
+  activeIndex?: number
+  /** Reported once the ring settles on a card, not for every card it passes. */
+  onActiveChange?: (index: number) => void
 }
 
-export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
+export default function ProjectCarousel3D({ projects, onCardClick, activeIndex, onActiveChange }: Props) {
   const mountRef      = useRef<HTMLDivElement>(null)
   const goToRef       = useRef<(i: number) => void>(() => {})
   const activeIdxRef  = useRef(0)
   const [activeIdx, setActiveIdx] = useState(0)
+  const settledRef    = useRef(0)
+  const onChangeRef   = useRef(onActiveChange)
+  useEffect(() => { onChangeRef.current = onActiveChange })
 
   useEffect(() => {
     if (!mountRef.current) return
     const mount = mountRef.current
     let rafId: number
     let cleanupFn: () => void
+    let cancelled = false
 
     // Create one host div + one React root per card
     const hosts: HTMLDivElement[] = []
@@ -51,6 +59,11 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
       const { CSS3DRenderer, CSS3DObject } = await import(
         'three/addons/renderers/CSS3DRenderer.js'
       )
+      // Unmounted while three was loading (filter change, Strict Mode): just release the cards.
+      if (cancelled) {
+        setTimeout(() => roots.forEach(r => { try { r.unmount() } catch {} }))
+        return
+      }
 
       const N    = projects.length
       const step = (2 * Math.PI) / N
@@ -177,6 +190,12 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         activeIdxRef.current = idx
         setActiveIdx(prev => prev !== idx ? idx : prev)
 
+        // Report only where the ring comes to rest.
+        if (!S.dragging && Math.abs(S.tgt - S.cur) < 0.004 && idx !== settledRef.current) {
+          settledRef.current = idx
+          onChangeRef.current?.(idx)
+        }
+
         renderer.render(scene, camera)
       }
       animate()
@@ -197,13 +216,23 @@ export default function ProjectCarousel3D({ projects, onCardClick }: Props) {
         window.removeEventListener('pointerup',   onUp)
         window.removeEventListener('resize',      onResize)
         if (mount.contains(renderer.domElement)) mount.removeChild(renderer.domElement)
-        roots.forEach(r => { try { r.unmount() } catch {} })
+        setTimeout(() => roots.forEach(r => { try { r.unmount() } catch {} }))
       }
     })()
 
-    return () => cleanupFn?.()
+    return () => {
+      cancelled = true
+      cleanupFn?.()
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [projects])
+
+  /* Follow the index from outside, unless we're already there. */
+  useEffect(() => {
+    if (activeIndex === undefined || activeIndex === settledRef.current) return
+    settledRef.current = activeIndex
+    goToRef.current(activeIndex)
+  }, [activeIndex])
 
   const N    = projects.length
   const prev = useCallback(() => goToRef.current((activeIdx - 1 + N) % N), [activeIdx, N])

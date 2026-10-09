@@ -83,3 +83,14 @@ body::before {
   .sec-title { font-size: 1.5rem; }
   .sec-label { display: none; }
 }
+
+/* Anchors land below the fixed nav. */
+section[id] { scroll-margin-top: 64px; }
+
+/* Very wide screens: backgrounds stay full-bleed, content stays readable. */
+@media (min-width: 1800px) {
+  main > section:not(.clients) {
+    padding-left: calc((100vw - 1680px) / 2);
+    padding-right: calc((100vw - 1680px) / 2);
+  }
+}

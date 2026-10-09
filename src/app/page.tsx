@@ -2,6 +2,7 @@ import React from 'react'
 import Cursor from '@/components/Cursor/Cursor'
 import Nav from '@/components/Nav/Nav'
 import Hero from '@/components/Hero/Hero'
+import Clients from '@/components/Clients/Clients'
 
 import Projects from '@/components/Projects/Projects'
 import About from '@/components/About/About'
@@ -17,7 +18,7 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-
+        <Clients />
         <Projects />
         <About />
         <Stack />
